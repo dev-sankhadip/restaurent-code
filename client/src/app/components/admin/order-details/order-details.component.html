@@ -10,7 +10,7 @@
       </div>
       <div class="col-lg-3">
         <p class="font-weight-bold mb-2">Mobile Number: <span>{{ getOrderDet('Identification') }}</span></p>
-        <p class="font-weight-bold">Delivery Area: <span>{{ getOrderDet('Delivery_Area_Desc') }}</span></p>
+        <p class="font-weight-bold mb-2">Alternative Number: <span>{{ getOrderDet('Identification') }}</span></p>        
       </div>
       <div class="col-lg-3">
         <p class="font-weight-bold mb-2">Order Total: <span>${{ getOrderDet('Order_Total') }}</span></p>
@@ -18,6 +18,7 @@
       </div>
       <div class="col-lg-3">
         <p class="font-weight-bold mb-2">Address: <span>{{ getOrderDet('Full_Addr') }}</span></p>
+        <p class="font-weight-bold">Delivery Area: <span>{{ getOrderDet('Delivery_Area_Desc') }}</span></p>
       </div>
     </div>
     <div class="row">
