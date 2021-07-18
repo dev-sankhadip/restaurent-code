@@ -87,6 +87,31 @@
             <h6 class="text-right">${{ getOrderDetails(orderId, 'Delivery_Charge') }}</h6>
           </div>
         </div>
+
+        <!-- Only admin show this section -->
+        <div class="admin-panel-past-order" *ngIf="IsAdmin">
+          <hr>
+          <div class="row d-flex">
+            <div class="col-lg-3">
+              <p class="font-weight-bold mb-2">Name: <span>--</span></p>
+              <p class="font-weight-bold">Delivery Type: <span>--</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="font-weight-bold mb-2">Mobile Number: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Alternative Number: <span>--</span></p>        
+            </div>
+            <div class="col-lg-3">
+              <p class="font-weight-bold mb-2">Order Total: <span>--</span></p>
+              <p class="font-weight-bold">Email: <span>--</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="font-weight-bold mb-2">Address: <span>--</span></p>
+              <p class="font-weight-bold">Delivery Area: <span>--</span></p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </ng-container>
