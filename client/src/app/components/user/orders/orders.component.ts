@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -189,6 +190,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     })
 
     // console.log(filteredOrderIds);
+  }
+   
+  dateReset(form: FormGroup ){
+    form.reset();
   }
 
 }

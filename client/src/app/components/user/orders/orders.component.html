@@ -14,10 +14,13 @@
           </div>
 
         </div>
-        <div class="col-lg-3 col-md-6 col-12 mb-3 pr-3 d-flex align-items-center">
+        <div class="col-lg-3 col-md-6 col-12 mb-3 pr-3 pl-lg-0 pl-4 d-flex align-items-center">
           <i class="fa fa-filter mr-3" style="font-size: 23px;"></i>
+          <form #dateform class="d-flex w-100">
           <input type="date" class="date" [(ngModel)]="searchValue.createdOn"
             (change)="SearchOrder($event, 'createdOn')">
+           <span class="ml-2 mt-1"><img src="../../../../assets/cross-svgrepo-com.svg" width="10px" class="cursor-pointer" (click)="dateReset(dateform)"></span>
+          </form>
         </div>
         <div class="col-lg-3 col-md-6 col-12 mb-3 pl-4 d-flex align-items-center">
           <i class="fa fa-filter mr-3" style="font-size: 23px;"></i>
