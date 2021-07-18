@@ -7,7 +7,7 @@
         <input type="text" class="form-control rounded number" formControlName="username">
       </div>
       <div class="form-group custom_form_group" #primaryNumber>
-        <label style="cursor: pointer;"><span (click)="addSecondaryNumber()">{{ IsSec ? "-" : "+"
+        <label style="cursor: pointer;"><span (click)="addSecondaryNumber()">{{ IsSec ? "−" : "+"
             }}</span></label>
         <input type="text" class="form-control rounded number" value=" + {{ getUserDetails('number') }}" readonly>
       </div>
@@ -55,8 +55,8 @@
       </div>
       <div class="form-group row" *ngIf="CheckOutForm.controls.orderType.value == 'D'">
         <label for="deliveryArea" class="col-sm-3 col-form-label">Delivery Area</label>
-        <div class="col-sm-9 pl-0">
-          <select class="form-control" id="deliveryArea" formControlName="deliveryArea">
+        <div class="col-sm-9 pl-md-0 pl-3">
+          <select class="form-control custom-dropdown" id="deliveryArea" formControlName="deliveryArea">
             <ng-container *ngIf="LookupValues">
               <option *ngFor="let c of getLookupValueByCategory('Delivery_Area')" value="{{c[1]}}">
                 {{c[2]}}</option>
@@ -123,7 +123,7 @@
         </div>
       </div>
 
-      <select class="form-control mb-5" id="deliveryArea" formControlName="paymentMethod">
+      <select class="form-control mb-5 custom-dropdown" id="deliveryArea" formControlName="paymentMethod">
         <ng-container *ngIf="LookupValues">
           <option *ngFor="let c of getLookupValueByCategory('Payment_Method')" value="{{c[1]}}">{{c[2]}}
           </option>

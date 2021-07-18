@@ -19,6 +19,21 @@ input[type="radio"]:checked {
 .custom_form_group {
     position: relative;
 }
+.custom-dropdown{
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+    background-position:
+    calc(100% - 20px) calc(1em + 0px),
+    calc(100% - 15px) calc(1em + 0px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    0px 1.5em;
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+}
 
 .custom_form_group input {
     padding-right: 45px;
@@ -48,7 +63,7 @@ input[type="radio"]:checked {
 .plus {
     font-size: 35px;
     position: relative;
-    top: -18px;
+    top: -16px;
     height: 0px;
     cursor: pointer;
 }
