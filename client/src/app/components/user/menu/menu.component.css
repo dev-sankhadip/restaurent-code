@@ -86,6 +86,13 @@
   background-color: #FFF7E4;
 }
 
+.bg-theme-color{
+  background-color: #F0FBFF;;
+}
+
+.text-theme{
+  color: #FDB916;
+}
 /* plate */
 .plate {
   position: relative;
