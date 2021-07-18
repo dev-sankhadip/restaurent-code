@@ -10,8 +10,7 @@
         <div class="card-header d-flex justify-content-between py-0">
           <p class="mt-2 mb-2 font-weight-bold">{{ this.selectedCategory.cat_name }}</p>
           <div class="d-flex">
-            <img src="../../../../assets/plus-svgrepo-com.svg" (click)="newEntreeOpen()" class="mr-3 cursor-pointer" width="15px" />
-            <img src="../../../../assets/menu-svgrepo-com.svg" width="20px" />
+            <img src="../../../../assets/plus-svgrepo-com.svg" (click)="newEntreeOpen()" class="cursor-pointer" width="15px" />
           </div>
         </div>
         <div class="card-body">
@@ -78,8 +77,7 @@
              <div class="row">
                <div class="col-lg-9 col-8 category-name" title="{{ category.Cat_Name }}">{{ category.Cat_Name }}</div>
                <div class="col-lg-3 col-4 pr-2 text-right text-nowrap">
-                <img src="../../../../assets/plus-svgrepo-com.svg" (click)="openMenu(category.Cat_Id, category.Cat_Name)" class="mr-md-3 mr-2 cursor-pointer" width="15px" />
-                <img src="../../../../assets/menu-svgrepo-com.svg" width="20px" />
+                <img src="../../../../assets/plus-svgrepo-com.svg" (click)="openMenu(category.Cat_Id, category.Cat_Name)" class="cursor-pointer" width="15px" />
                </div>
              </div>
           </div>
