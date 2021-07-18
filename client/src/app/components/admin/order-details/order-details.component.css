@@ -1,0 +1,21 @@
+
+/* single item content */
+.single_item_header{
+    background-color: #E5E5E5;
+    padding: 3px 20px;
+    border: 1px solid rgb(189, 188, 188) !important;
+}
+
+.col-md-3 .card{
+    min-height: 350px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.bg-gray{
+    background-color: #E5E5E5;
+}
+.order-status,.reason-status,.list-group-item{
+    cursor: pointer;
+}
+

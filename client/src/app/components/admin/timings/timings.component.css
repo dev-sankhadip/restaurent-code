@@ -1,0 +1,46 @@
+.timings-heading{
+    background-color: #E5E5E5;
+    display: flex;
+    align-items: center;
+    padding: 0px 30px;
+}
+input,select{
+    box-shadow: none !important;
+    outline: none !important;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
+    display:none;
+}
+
+/* from-time */
+.from-time{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.from-time .icon-label i{
+    font-size: 23px;
+    color:gray;
+}
+.from-time .time-input{
+    font-size: 20px;
+    margin-left: 25px;
+}
+.from-time .select-label{
+   position: relative;
+   margin-left: -25px;
+}
+.from-time .select-label select option{
+    font-size: 18px;
+}
+
+@media only screen and (min-device-width: 1000px) and (max-device-width: 1250px) {
+    .form-control{
+        width: 155px !important;
+    }
+}
+
+.bg-gray{
+    background-color: #E5E5E5;
+}

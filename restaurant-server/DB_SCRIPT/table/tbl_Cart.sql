@@ -1,0 +1,10 @@
+CREATE TABLE tbl_Cart
+(
+	Id          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Firebase_Id VARCHAR(50) NOT NULL,
+    Menu_Id     VARCHAR(20) NOT NULL,
+    Menu_Qty    INT NOT NULL,
+    Created_On  DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Updated_On  DATETIME NULL,
+    Delete_Flag VARCHAR(1) DEFAULT 'N'
+)

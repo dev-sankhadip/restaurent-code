@@ -1,0 +1,33 @@
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div style="min-height: 100vh;background-color: #F0FBFF;padding-top: 70px;padding-bottom: 50px;padding-left: 40px !important;padding-right: 40px !important;"
+                    class="shadow px-4 cart-leftbar">
+                    <div class="mt-4 d-flex justify-content-between border-bottom">
+                        <h4 class="modal-title text-center font-weight-bold" id="staticBackdropLabel">Enter Card Details
+                        </h4>
+                        <h3 data-dismiss="modal" class="float-right"><i class="mdi mdi-close"></i></h3>
+                    </div>
+
+                    <form (ngSubmit)="createStripeToken()" class="checkout mt-4" autocomplete="off">
+                        <div id="form-field">
+                            <div id="card-info" #cardInfo class="py-4 px-2"></div>
+                            <div class="text-center">
+                                <button id="submit-button" class="btn btn-small btn-warning my-4" type="submit">
+                                    Pay ${{totalAmount}}
+                                </button>
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="cardError">
+                                {{ cardError }}
+                            </div>
+                        </div>
+                    </form>
+
+                    <img src="../../../../assets/delivery-removebg-preview.png" class="w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

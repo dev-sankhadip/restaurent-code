@@ -1,0 +1,36 @@
+<div class="wrap">
+  <div class="container-fluid">
+    <h4 class="font-weight-bold">ORDERS IN PIPELINE</h4>
+    <div style="overflow-y: auto;max-height: 150px;" class="orders-item-container">
+      <div class="row w-100">
+        <ng-container *ngIf="orderDetails; then currentOrder; else noCurrentOrder">
+
+        </ng-container>
+        <ng-template #currentOrder>
+          <ng-container *ngFor="let orderId of orderIds">
+            <div class="col-md-4">
+              <div class="order-item" id="{{ orderId }}" (click)="showOrderDetail(orderId,$event)">
+                #{{ orderId }}
+                <i class="mdi mdi-dots-horizontal" id="{{ orderId }}"></i>
+              </div>
+            </div>
+          </ng-container>
+        </ng-template>
+
+        <ng-template #noCurrentOrder>
+          <div class="text-center w-100">
+            <div class="plate">
+              <span class="inner_plate">
+                <span>No Current Order</span>
+              </span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- single order item content-->
+  <app-order-details></app-order-details>
+
+</div>

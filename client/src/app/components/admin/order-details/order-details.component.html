@@ -1,0 +1,114 @@
+<div class="container-fluid p-0 mt-4" *ngIf="selectedOrderDetails">
+  <div class="single_item_header">
+    <h4 class="font-weight-bold mt-2">{{ orderId }}</h4>
+  </div>
+  <div class="container-fluid pt-3">
+    <div class="row d-flex mb-4">
+      <div class="col-lg-3">
+        <p class="font-weight-bold mb-2">Name: <span>{{ getOrderDet('Name') }}</span></p>
+        <p class="font-weight-bold">Delivery Type: <span>{{ getOrderDet('Order_Type_Desc') }}</span></p>
+      </div>
+      <div class="col-lg-3">
+        <p class="font-weight-bold mb-2">Mobile Number: <span>{{ getOrderDet('Identification') }}</span></p>
+        <p class="font-weight-bold">Delivery Area: <span>{{ getOrderDet('Delivery_Area_Desc') }}</span></p>
+      </div>
+      <div class="col-lg-3">
+        <p class="font-weight-bold mb-2">Order Total: <span>${{ getOrderDet('Order_Total') }}</span></p>
+        <p class="font-weight-bold">Email: <span>{{ getOrderDet('Email') }}</span></p>
+      </div>
+      <div class="col-lg-3">
+        <p class="font-weight-bold mb-2">Address: <span>{{ getOrderDet('Full_Addr') }}</span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 mb-4">
+        <div class="card rounded">
+          <div class="card-header">ORDER DETAILS</div>
+          <div class="card-body pt-2">
+            <div class="row border-bottom pb-1 mb-2">
+              <div class="col-7"></div>
+              <div class="col-2 text-lg-center text-right px-lg-0">qty</div>
+              <div class="col-3 text-lg-center text-right px-lg-0">price</div>
+            </div>
+            <!-- items-->
+            <div class="row mb-2">
+              <ng-container *ngFor="let order of selectedOrderDetails">
+                <div class="col-7 pl-lg-0">{{ order.Menu_Name }}
+                  <!-- <span>(10)</span> -->
+                </div>
+                <div class="col-2 text-lg-center text-right px-lg-0">{{ order.Menu_Qty }}</div>
+                <div class="col-3 text-lg-center text-right text-nowrap px-lg-0">${{ order.Menu_Price }}</div>
+              </ng-container>
+            </div>
+
+          </div>
+          <div class="card-footer bg-white d-flex justify-content-between pl-lg-1" *ngIf="getOrderDet('Order_Type') == 'D'">
+            <span>Delivery Charge</span>
+            <span>${{ getOrderDet('Delivery_Charge') }}</span>
+          </div>
+          <div class="card-footer bg-white d-flex justify-content-between pl-lg-1">
+            <span>TOTAL</span>
+            <span>${{ getOrderDet('Order_Total') }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1"></div>
+      <div class="col-lg-3 mb-4">
+        <div class="card rounded">
+          <div class="card-header">ORDER STATUS UPDATE</div>
+          <div class="card-body px-0 py-0">
+            <!-- status-->
+            <ul class="list-group list-group-flush">
+              <ng-container *ngFor="let status of orderStatus">
+                <li class="list-group-item" [ngClass]="{'bg-gray': status[1] === selectedOrderStatus }"
+                  (click)="selectedOrderStatus = status[1]">{{
+                  status[2] }}</li>
+              </ng-container>
+            </ul>
+
+          </div>
+          <div class="card-footer bg-white text-center">
+            <button class="px-4 btn border"
+              style="border-radius: 20px;box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;"
+              (click)="updateOrder()" [disabled]="curOrderStatus == selectedOrderStatus">Confirm</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1"></div>
+      <div class="col-lg-3 mb-4">
+        <div id="accordion" *ngIf="selectedOrderStatus == 'U'">
+          <div class="card rounded">
+            <div class="card-header py-1 px-2" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link text-dark" aria-expanded="true" aria-controls="collapseOne"
+                  style="text-decoration: none;" style="outline: none;box-shadow: none;text-decoration: none;">
+                  REASON FOR UNACCEPTING
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                  <ng-container *ngFor="let reason of unacptReason">
+                    <li class="list-group-item" [ngClass]="{'bg-gray': reason[1] === selectedUnacptReason }"
+                      (click)="selectedUnacptReason = reason[1]">{{
+                      reason[2] }}</li>
+                  </ng-container>
+                </ul>
+
+              </div>
+              <!-- <div class="card-footer bg-white border-0 w-100" style="position: absolute;bottom: 0;">
+                <i class="mdi mdi-chevron-double-up text-secondary d-block text-center"></i>
+              </div> -->
+            </div>
+          </div>
+
+        </div>
+        <!-- <button *ngIf="selectedOrderStatus == 'U'" class="btn border mt-3 px-3 float-right bg-gray border-dark"
+          style="border-radius: 20px;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">Refund order</button> -->
+
+      </div>
+    </div>
+  </div>
+</div>

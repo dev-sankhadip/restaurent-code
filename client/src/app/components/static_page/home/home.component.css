@@ -1,0 +1,45 @@
+.wrap {
+    padding-top: 130px;
+    padding-bottom: 30px;
+  }
+  .bg-theme {
+    background-color: #FFF7E4;
+  }
+  h1{
+      font-size: 46px;
+      font-weight: 700;
+      word-spacing: 5px;
+  }
+  h1 span{
+      color: #FDB916;
+  }
+  .btn-home-theme{
+      background-color: #D3222D;
+      border-color: #D3222D;
+      color: white;
+  }
+
+  .home_img{
+      width: 85%;
+      border-top-left-radius: 50px;
+      border-top-right-radius: 15px;
+      border-bottom-left-radius: 15px ;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* insert styles here */
+    .dot-direction{
+        transform: rotate(90deg);
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .dot-direction{
+        transform: rotate(90deg);
+        width: 20% !important;
+        margin-left: 40%;
+    }
+
+    .divider{
+        height: 100px;
+    }
+  }

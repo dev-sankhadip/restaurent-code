@@ -1,0 +1,31 @@
+.edit-menu-heading{
+    display: flex;
+    background-color: #E5E5E5;
+    padding: 0px 30px;
+    align-items: center;
+}
+.edit-menu-heading i{
+    font-size: 23px;
+}
+
+input,textarea{
+    box-shadow: none !important;
+    outline: none !important;
+}
+.btn-theme{
+    border-radius: 20px;
+    padding: 8px 30px;
+    float: right;
+    background-color: white;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.category-name{
+    overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

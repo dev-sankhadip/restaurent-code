@@ -1,0 +1,14 @@
+.wraper{
+    padding-top: 100px;
+}
+.select-form{
+    background-color: rgb(233, 233, 233);
+    padding: 4px 15px;
+    border-radius: 2px;
+}
+
+.btn-theme{
+border-radius: 20px;
+padding: 4px 30px;
+border: 1px solid #ccc;
+}

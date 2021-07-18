@@ -1,0 +1,99 @@
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div
+          style="min-height: 100vh;background-color: #F0FBFF;padding-top: 70px;padding-bottom: 50px;padding-left: 50px;padding-right: 50px;"
+          class="shadow px-4 cart-leftbar">
+          <div class="d-flex justify-content-between">
+            <img src="../../../assets/images/BombaySpice-Logo-removebg-preview.png" class="w-50" />
+            <h3 data-dismiss="modal" style="cursor: pointer;" class="mt-2 d-md-none d-block"><i class="mdi mdi-close"></i></h3>
+          </div>
+          <p style="font-family: sans-serif;"><span class="font-weight-bold">{{ IsLogin ? 'Login' : 'Signup'}}</span> to
+            order authentic spicy
+            Indian food.
+          </p>
+          <div class="d-flex justify-content-between align-items-center step flex-wrap">
+            <div class="d-flex align-items-center">
+              <img src="../../../assets/images/fast-delivery.png" width="60px" class="sidebar_img">
+              <h6 class="font-weight-bold text-center sidebar_text">QUICK<br>DELIVERY</h6>
+            </div>
+            <div class="d-flex align-items-center">
+              <img src="../../../assets/images/thumbs-up.png" width="60px" class="sidebar_img">
+              <h6 class="font-weight-bold text-center sidebar_text">GREAT<br>FOOD</h6>
+            </div>
+            <div class="d-flex align-items-center">
+              <img src="../../../assets/images/order-food.png" width="60px" class="sidebar_img">
+              <h6 class="font-weight-bold text-center sidebar_text">EASY<br>ORDERING</h6>
+            </div>
+          </div>
+
+          <div class="bg-white shadow-sm w-100 my-4 py-4 px-md-5 px-3" style="overflow-x: hidden;">
+            <form [formGroup]="userForm">
+              <div class="form-group" *ngIf="!IsLogin">
+                <label>*</label>
+                <input type="text" class="form-control" placeholder="Your Name" formControlName="name" />
+                <app-error [FormName]="userForm.controls.name" [Required]="true"></app-error>
+              </div>
+              <div class="form-group" *ngIf="!IsLogin">
+                <label>*</label>
+                <input type="email" class="form-control" placeholder="Your Email" formControlName="email" />
+                <app-error [FormName]="userForm.controls.email" [Email]="true" [Required]="true"></app-error>
+              </div>
+              <div class="form-group">
+                <label style="z-index: 10;">*</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <!-- <select class="border-gray" id="country-code-auth">
+                      <option value="91">+91</option>
+                      <option value="61">+61</option>
+                    </select> -->
+                    <select
+                    style="border:1px solid #ccc;outline: none !important;border-top-left-radius: 4px;border-bottom-left-radius: 4px;"
+                    id="country-code-auth">
+                    <ng-container *ngIf="LookupValues">
+                        <option *ngFor="let c of getLookupValueByCategory('Country_Code')" value="{{c[1]}}">
+                            {{c[2]}}
+                        </option>
+                    </ng-container>
+                </select>
+                  </div>
+                  <input type="number" name="mobile" class="form-control border-left-0" placeholder="Mobile No."
+                    formControlName="phoneNo" style="background-color: transparent;" maxlength="10" oninput="this.value=this.value.slice(0,this.maxLength)" />
+                </div>
+                <app-error [FormName]="userForm.controls.phoneNo" [Required]="true"></app-error>
+                <!-- <app-error [FormName]="userForm.controls.phoneNo" [MaxLength]="true"></app-error> -->
+              </div>
+              <div class="form-group mb-1" *ngIf="IsCodeResent">
+                <label>*</label>
+                <input type="text" name="otp" class="form-control" id="otpInput" placeholder="OTP received on mobile">
+              </div>
+              <div hidden id="hidden-box"></div>
+              <div id="recaptcha-container" [hidden]="IsCaptchaVerified"
+                style="transform:scale(.80);-webkit-transform:scale(.80);transform-origin:0 0;-webkit-transform-origin:0 0;">
+              </div>
+              <div class="mb-4" (click)="sendLoginCode">
+                <button [disabled]="!IsCaptchaVerified" class="float-right btn btn-dark rounded"
+                  (click)="checkIfUserExist()">{{
+                  IsCodeResent ? 'RESEND OTP' : 'SEND OTP' }}</button>
+              </div>
+              <div class="text-center">
+                <button class="btn px-4 font-weight-bold ml-md-5 ml-4 border submit-btn" style="border-radius: 18px;"
+                  [disabled]="userForm.invalid || !windowRef.confirmationResult" id="sign-in-button"
+                  (click)="verifyLoginCode()">SUBMIT</button>
+              </div>
+            </form>
+          </div>
+          <p style="font-family: sans-serif;">
+            {{ IsLogin ? 'Not a registered user?' : 'Already a registered user?' }}
+            <span class="font-weight-bold" (click)="toggleLoginSignup()">
+              {{ IsLogin ? 'Signup' : 'Login'}}
+            </span>
+            now
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

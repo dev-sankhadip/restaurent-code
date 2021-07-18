@@ -1,0 +1,20 @@
+/* find us section */
+.find_us{
+    background-color: #F0FBFF;
+}
+
+.find_us_heading{
+    font-size: 46px;
+    font-weight: 900;
+}
+
+.find_us h5{
+    color:#646C6F;
+    font-weight: 500;
+}
+.find_us_img{
+    border-top-left-radius: 70px;
+    border-bottom-left-radius: 20px;
+    margin-bottom: 10px;
+    height: 90%;
+}

@@ -1,0 +1,31 @@
+<ng-container *ngIf="FormName && FormName.invalid && (FormName.dirty || FormName.touched)">
+
+    <ng-container *ngIf="Required">
+        <ng-container *ngIf="FormName.errors.required">
+            <img src="assets/alert-wrong.svg" />
+            <span class="error-text mt-2">Required Field</span>
+        </ng-container>
+    </ng-container>
+
+    <!--It will pop up if email is invalid and Email is true-->
+    <ng-container *ngIf="Email">
+        <ng-container *ngIf="FormName.errors.email">
+            <img src="assets/alert-wrong.svg" />
+            <span class="error-text mt-2"> Invalid Email Address </span>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="MaxLength">
+        <ng-container *ngIf="FormName.errors.MaxLength">
+            <img src="assets/alert-wrong.svg" />
+            <span class="error-text mt-2">Phone number must be 10 digit</span>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="Number">
+        <ng-container *ngIf="FormName.errors.Number">
+            <img src="assets/alert-wrong.svg" />
+            <span class="error-text mt-2">Invalid Number</span>
+        </ng-container>
+    </ng-container>
+</ng-container>

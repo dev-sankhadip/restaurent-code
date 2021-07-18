@@ -1,0 +1,15 @@
+.wrap {
+    margin-top: 0px;
+    padding-bottom: 30px;
+  }
+  .bg-theme {
+    background-color: #FFF7E4;
+  }
+  .heading{
+    font-weight: 900;
+    font-size: 46px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  .para{
+      font-weight: 500;
+  }

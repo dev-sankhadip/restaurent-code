@@ -1,0 +1,117 @@
+<!-- menu header section -->
+<div class="header wrap">
+  <h1 class="text-center headding">Browse our menu</h1>
+  <p class="text-center para">Use our menu to place an order online, or to place a pickup order.<br>
+    Spicy Indian food this way
+  </p>
+</div>
+<div class="container filter-btns">
+  <!-- Filter button section -->
+  <div class="d-flex justify-content-center flex-wrap flex-md-row flex-column">
+    <ng-container *ngIf="categoryDetails!=null">
+      <button class="btn btn-theme-outline btn-lg mx-3 mb-3 rounded px-4 py-2 filter-btn all active" (click)="showAllMenuItems()">All</button>
+      <ng-container *ngFor="let item of categoryDetails">
+        <button class="btn btn-theme-outline btn-lg mx-3 mb-3 rounded px-4 py-2 filter-btn" (click)="showMenuItems(item,$event)">{{
+          getCategoryIdAndName(item, 1) }}</button>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-12 text-center d-flex justify-content-center">
+      <form class="form-inline my-2 my-lg-0 mx-md-0 mx-3">
+        <input class="form-control mr-sm-2 rounded" id="search" type="search" (keyup)="searchItem()" placeholder="Search menu items" aria-label="Search" style="width: 340px;">
+        <button class="btn btn-outline-success my-2 my-sm-0 mx-auto rounded" type="submit" (click)="searchFunction()">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <!-- Filter product section -->
+    <div class="row">
+      <ng-container *ngIf="menuItems;then menuBox;else noMenu">
+      </ng-container>
+
+      <ng-template #menuBox>
+        <ng-container *ngFor="let item of menuItems | slice:previous:next">
+          <div class="col-md-6 mb-4 menuItem">
+            <div class="card border-0">
+              <div class="card-body bg-theme shadow-sm menu-item">
+                <div class="row">
+                  <div class="col-8"><h4 class="mt-0 font-weight-bold item-name">{{ item[1] }}</h4></div>
+                  <div class="col-4 text-right"><h4 class="font-weight-bold text-warning text-nowrap item-description">$ {{ item[3] }}</h4></div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="product_description">
+                      <p>{{ item[2] }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 d-flex">
+                    <input type="number" min="1" value="1" class="form-control" #refEl style="width: 65px;">
+                    <button class="btn btn-theme rounded btn-md px-3 py-2 ml-4"
+                      (click)="addToCart(item[0], refEl.value, item[4])">Add to cart</button>
+                  </div>
+                </div>
+
+
+                <!-- <div class="row">
+                  <div class="col-md-8">
+                    <div class="d-flex flex-wrap justify-content-between">
+                      <h4 class="mt-0 font-weight-bold">{{ item[1] }}</h4>
+                      <h4 class="font-weight-bold text-warning float-right">$ {{ item[3] }}</h4>
+                    </div>
+                    <div class="product_description">
+                      <p>{{ item[2] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between pt-3">
+                      <input type="number" min="1" value="1" class="form-control w-25" #refEl>
+                      <button class="btn btn-theme rounded btn-md px-3 py-2"
+                        (click)="addToCart(item[0], refEl.value, item[4])">Add to cart</button>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-template>
+      <ng-template #noMenu>
+        <div class="text-center w-100">
+          <div class="plate">
+            <span class="inner_plate">
+              <span>No Menu</span>
+            </span>
+          </div>
+        </div>
+      </ng-template>
+      <div class="text-center w-100" id="nomenu">
+        <div class="plate">
+          <span class="inner_plate">
+            <span>No Menu</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="pt-4 pb-5 container">
+    <button class="btn float-right btn-warning rounded mx-2" (click)="nextItems()" *ngIf="next<totalMenuItems">Next</button>
+    <button class="btn float-right btn-warning rounded mx-2" (click)="prevItems()" *ngIf="previous>0">Previous</button>
+  </div>
+
+  <div class="text-center container pt-5" >
+    <a href="/menu" class="btn btn-dark btn-lg rounded px-5 mt-3 mb-4 mx-auto pt-3 pb-3 d-none" >See Full Menu</a>
+    <button class="btn btn-dark btn-lg rounded px-5 mt-3 mb-4 mx-auto pt-3 pb-3" (click)="getCartItem()">Go to cart</button>
+  </div>
+
+</div>
+
+<!-- Find us section -->
+<app-find-us></app-find-us>
+<!-- footer section-->
+<app-footer></app-footer>
+
+<!-- <app-cart></app-cart> -->

@@ -1,0 +1,30 @@
+{
+  "name": "restaurant-server",
+  "version": "1.0.0",
+  "description": "Node.JS server for Resturent Site",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.5",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.9.0",
+    "joi": "^17.4.0",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.6.1",
+    "stripe": "^8.156.0",
+    "twilio": "^3.64.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

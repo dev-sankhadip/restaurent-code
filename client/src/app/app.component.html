@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+
+<div class="closed-restaurent" *ngIf="IsRestuClosed && !IsAdmin" (click)="collapse()">
+  <div class="text-center">
+    <p class="sorry">Sorry</p>
+    <p class="we-are">WE ARE</p>
+    <h2>CLOSED</h2>
+  </div>
+</div>
+<div class="restaruent-timing-div" *ngIf="!IsAdmin">
+  <p>Restaurant is open from {{ openTime }} AM to {{ closeTime }} PM.</p>
+</div>
+
+<div class="container-fluid p-0" (click)="collapse()">
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
+</div>
+<ngx-ui-loader fgsColor="#FDBA3D" pbColor="#FDBA3D"></ngx-ui-loader>

@@ -1,0 +1,67 @@
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <ng-container *ngIf="IsCartItem;then cartBox;else noCart">
+                </ng-container>
+
+                <ng-template #cartBox>
+                    <div
+                        style="min-height: 100vh;background-color: #F0FBFF;padding-top: 80px;padding-bottom: 60px;padding-left: 30px;padding-right: 30px;"
+                        class="shadow cart-leftbar">
+                        <div class="d-flex justify-content-between border-bottom">
+                            <h3 class="font-weight-bold">Your Cart</h3>
+                            <h3 data-dismiss="modal"><i class="mdi mdi-close"></i></h3>
+                        </div>
+
+                        <div [formGroup]="cartForm" class="pb-5 mb-5 carts-div-section" style="overflow-y: auto;height: 55vh;"> 
+                            <div formArrayName="items" class="mb-4">
+                                <div *ngFor="let item of cartForm.get('items').controls;index as i" [formGroupName]="i">
+                                    <div class="cart-item mt-2 pt-3 row mb-3 border-bottom w-100" [formGroup]="item">
+                                        <div class="col-8 left-cart-section">
+                                            <h5 class="font-weight-bold w-100">{{ item.controls.name.value }}</h5>
+                                            <p class="font-weight-bold text-nowrap">$ {{ item.controls.price.value }} <a
+                                                    class="ml-md-4 ml-3" style="color: #FDB916;"
+                                                    (click)="removeItemFromCart(item.controls.menu_id.value, i)">Remove</a>
+                                            </p>
+                                        </div>
+                                        <div class="col-4 right-cart-section">
+                                            <input type="number" min="0" class="form-control float-right"
+                                                style="width: 70px;" formControlName="qty"
+                                                (blur)="updateCartItem(item, i)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="position:absolute;bottom: 0;left: 0;" class="w-100 px-5 pb-3" *ngIf="IsCartItem">
+                            <div class="d-flex justify-content-between px-1 mb-2">
+                                <h5 style="color: gray;font-weight: 500;">Subtotal</h5>
+                                <h5 class="font-weight-bold">$ {{ subTotal }} AUD</h5>
+                            </div>
+                            <button class="btn btn-theme rounded btn-lg mb-4" style="width: 100%;"
+                                (click)="hideCartModal()">Checkout</button>
+                        </div>
+
+                    </div>
+                </ng-template>
+                <ng-template #noCart>
+                    <div style="min-height: 100vh;background-color: #F0FBFF;padding-top: 80px;padding-bottom: 60px;padding-left: 30px;padding-right: 30px;"
+                    class="shadow cart-leftbar">
+                        <div class="d-flex justify-content-between border-bottom">
+                            <h3 class="font-weight-bold">Your Cart</h3>
+                            <h3 data-dismiss="modal"><i class="mdi mdi-close"></i></h3>
+                        </div>
+                        <div class="text-center">
+                            <img src="../../../../assets/empty_cart.svg" class="w-75 mt-5 mb-4">
+                            <h4 style="color: #FDB916;">No Menu Added Yet</h4>
+                            <h4>Looks like you, haven't made<br> your menu yet.</h4>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

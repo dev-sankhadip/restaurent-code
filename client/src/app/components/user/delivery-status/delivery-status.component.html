@@ -1,0 +1,31 @@
+<div class="wraper">
+  <div
+    class="d-flex justify-content-center align-items-center bg-theme shadow-sm flex-column pt-5 justify-content-center">
+    <img src="../../../../assets/images/status-back.jpeg"
+      style="width: 240px;position: absolute;z-index: 5;opacity: .5;" class="food-heart">
+    <h1 class="font-weight-bold mt-4 text-center thanku-text" style="z-index: 10;" *ngIf="status!='U'">THANK YOU FOR
+      ORDERING!</h1>
+    <h1 class="font-weight-bold mt-4 text-center thanku-text" style="z-index: 10;" *ngIf="status=='U'">Uh Oh! We can't
+      accept this order</h1>
+  </div>
+
+  <div class="container text-center mt-4">
+    <h1 class="font-weight-bold thanku-text">ORDER STATUS</h1>
+    <h5 class="para" *ngIf="status!='U'">Your order with id {{ orderId }} placed on {{ orderCreatedOn }}<br
+        class="d-md-block d-none"> will
+      be with
+      you in 45 minutes</h5>
+    <h5 class="para" *ngIf="status=='U'">Your order is unaccepted as you are currently in a non-serviceable area </h5>
+  </div>
+
+  <div class="progress-track py-4">
+    <ul id="progressbar">
+      <li class="step0 {{unaccepted ? 'active': ''}}" id="step1">Unaccepted</li>
+      <li class="step0 text-center {{accepted ? 'active': ''}}" id="step2">Accepted</li>
+      <li class="step0 text-right  {{kitchen ? 'active': ''}}" id="step3">In the Kitchen</li>
+      <li class="step0 text-right  {{way ? 'active': ''}}" id="step4">On the <br class="d-md-none d-block">way</li>
+      <li class="step0 text-right  {{delivered ? 'active': ''}}" id="step5">Delivered</li>
+    </ul>
+  </div>
+
+</div>

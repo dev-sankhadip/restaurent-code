@@ -1,0 +1,17 @@
+.footer{
+    background-color: #FDB916;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.footer a{
+    margin-left: 45px;
+    margin-right: 45px;
+    font-size: 17px;
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,219 @@
+<div class="container-fluid wrap">
+  <div class="row" [formGroup]="CheckOutForm">
+    <div class="col-md-5 px-4">
+      <h1 class="font-weight-bold text-secondary">Checkout</h1>
+      <div class="form-group custom_form_group">
+        <label><i class="fa fa-edit"></i></label>
+        <input type="text" class="form-control rounded number" formControlName="username">
+      </div>
+      <div class="form-group custom_form_group" #primaryNumber>
+        <label style="cursor: pointer;"><span (click)="addSecondaryNumber()">{{ IsSec ? "-" : "+"
+            }}</span></label>
+        <input type="text" class="form-control rounded number" value=" + {{ getUserDetails('number') }}" readonly>
+      </div>
+      <div class="form-group" style="position:relative" *ngIf="IsSec">
+        <label
+          style="position: absolute;top: -15px;right: 25px;width: 25px;height: 20px;padding: 2px;padding-left: 8px;z-index: 5;font-size: 25px;background-color: white;">*</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <select
+              style="border:1px solid #ccc;outline: none !important;border-top-left-radius: 4px;border-bottom-left-radius: 4px;"
+              id="country-code">
+              <ng-container *ngIf="LookupValues">
+                <option *ngFor="let c of getLookupValueByCategory('Country_Code')" value="{{c[1]}}">
+                  {{c[2]}}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <input type="text" name="mobile" class="form-control border-left-0 number" id="sec-number"
+            placeholder="Mobile No."
+            style="background-color: transparent;box-shadow:none;outline:none;border-top-right-radius: 4px;border-bottom-right-radius: 4px;"
+            maxlength="10" />
+        </div>
+      </div>
+
+      <div class="row mb-4" *ngIf="LookupValues">
+        <div class="col-3">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="orderType" id="Delivery"
+              value="{{ getLookupValueByCategory('Order_Type')[0][1] }}">
+            <label class="form-check-label" for="Delivery">
+              {{ getLookupValueByCategory('Order_Type')[0][2] }}
+            </label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="orderType" id="Pickup"
+              value="{{ getLookupValueByCategory('Order_Type')[1][1] }}">
+            <label class="form-check-label" for="Pickup">
+              {{ getLookupValueByCategory('Order_Type')[1][2] }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="CheckOutForm.controls.orderType.value == 'D'">
+        <label for="deliveryArea" class="col-sm-3 col-form-label">Delivery Area</label>
+        <div class="col-sm-9 pl-0">
+          <select class="form-control" id="deliveryArea" formControlName="deliveryArea">
+            <ng-container *ngIf="LookupValues">
+              <option *ngFor="let c of getLookupValueByCategory('Delivery_Area')" value="{{c[1]}}">
+                {{c[2]}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+
+      <div class="accordion my-4" id="addAddress" *ngIf="CheckOutForm.controls.orderType.value == 'D'">
+        <div class="card shadow-sm">
+          <div class="card-header bg-white d-flex justify-content-between" id="headingOne">
+            <span data-toggle="collapse" data-target="#collapseOne" style="cursor: pointer;" aria-expanded="true"
+              aria-controls="collapseOne">Add a delivery address</span>
+            <span class="plus p-0 m-0" (click)="changeAddressType()">{{ oldAddressShow ? "+" : "−" }}</span>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+
+
+              <div class="old-address" *ngIf="oldAddressShow">
+                <ng-container *ngIf="savedAddressList">
+                  <div class="mb-3" *ngFor="let address of savedAddressList; index as i;">
+                    <label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="{{ i }}" formControlName="addrId"
+                          value="{{ address.Addr_Id }}">
+                        <label class="form-check-label" for="{{ i }}">
+                          Address {{ i+1 }}
+                        </label>
+                      </div>
+                    </label>
+                    <input type="text" class="form-control rounded"
+                      value="{{ address.Delivery_Area_Desc + ' ,' + address.Full_Addr + ' ,' + address.Landmark + ' ,' + address.State + ' ,' +address.Zip_Code }}">
+                  </div>
+                </ng-container>
+
+              </div>
+
+
+              <div class="new-address" *ngIf="!oldAddressShow">
+                <div class="form-group">
+                  <label>*</label>
+                  <input type="text" class="form-control" placeholder="Full Address" formControlName="fullAddr" />
+                </div>
+                <div class="form-group">
+                  <label>*</label>
+                  <input type="text" class="form-control" placeholder="Zip Code" formControlName="zipCode" />
+                </div>
+                <div class="form-group">
+                  <label>*</label>
+                  <input type="text" class="form-control" placeholder="Landmark" formControlName="landmark" />
+                </div>
+                <div class="form-group">
+                  <label>*</label>
+                  <input type="text" class="form-control" placeholder="Western Australia" value="Western Australia"
+                    readonly />
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <select class="form-control mb-5" id="deliveryArea" formControlName="paymentMethod">
+        <ng-container *ngIf="LookupValues">
+          <option *ngFor="let c of getLookupValueByCategory('Payment_Method')" value="{{c[1]}}">{{c[2]}}
+          </option>
+        </ng-container>
+      </select>
+
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <h1 class="font-weight-bold text-gray">Order Summary</h1>
+      <h4 style="color: #FDB916;">Your Order</h4>
+      <div class="p-3" style="background-color: #F0FBFF;" *ngIf="IsCartItem">
+        <!-- order items -->
+
+        <!-- 1st type -->
+        <div [formGroup]="cartForm">
+          <div formArrayName="items">
+            <div *ngFor="let item of cartForm.get('items').controls;index as i" [formGroupName]="i">
+              <div [formGroup]="item">
+                <div class="order_item mb-2">
+                  <div class="d-flex">
+                    <div class="item-img-green mt-1" *ngIf="item.controls.type.value == 'veg'">
+                      <div></div>
+                    </div>
+                    <div class="item-img-red mt-1" *ngIf="item.controls.type.value == 'non veg'">
+                      <div></div>
+                    </div>
+                    <div class="ml-2">
+                      <p class="mb-0">{{ item.controls.name.value }}
+                        <!-- (<span>2</span>) -->
+                      </p>
+                      <small>${{ item.controls.price.value }}</small>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn py-0" style="font-size: 23px;"
+                        (click)="updateCartItem(item, i, 'sub')">−</button>
+                      <button type="button" class="btn py-0">{{ item.controls.qty.value }}
+                      </button>
+                      <button type="button" class="btn py-0" (click)="updateCartItem(item, i, 'add')"><i
+                          class="mdi mdi-plus"></i></button>
+                    </div>
+                    <small class="ml-auto">${{ (item.controls.price.value *
+                      item.controls.qty.value).toFixed(2) }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer of order -->
+        <div class="order-footer ml-4 mt-2">
+          <div class="d-flex justify-content-between">
+            <p class="mb-0">Total</p>
+            <div style="border-top: 2px solid black; width: 100px;">
+              <p class="float-right mb-0">$ {{ subTotal }}</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between" *ngIf="this.CheckOutForm.controls.orderType.value == 'D'">
+            <p class="mb-0">Delivery</p>
+            <div style="border-bottom: 2px solid black; width: 100px;" *ngIf="DeliveryChargeList">
+              <p class="float-right mb-0">$ {{ deliveryCharge }}</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="mb-0">Grand Total</p>
+            <p class="float-right mb-0">$ {{ grandTotal }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" *ngIf="!IsCartItem">
+        <img src="../../../../assets/empty_cart.svg" class="w-75 mt-1 mb-4">
+        <h4 style="color: #FDB916;">No Orders Yet</h4>
+        <h4>Looks like you, haven't made<br> your menu yet.</h4>
+      </div>
+      <div class="text-center mt-5">
+        <button class="btn btn-lg px-4 btn-red rounded mb-4" [disabled]="CheckOutForm.invalid || !IsCartItem"
+          (click)="placeOrder()">Place
+          Order</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<app-payment-charge [totalAmount]="grandTotal"></app-payment-charge>
+
+<app-bank-details [amount]="grandTotal"></app-bank-details>

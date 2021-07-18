@@ -1,0 +1,1 @@
+export const TokenExceptURL = ['/menu/items', '/auth/signup', '/auth/check-user', '/admin/login']

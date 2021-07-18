@@ -1,0 +1,18 @@
+@media(max-width:320px) {
+    .cart-leftbar {
+        width: 100% !important;
+    }
+    .modal-dialog {
+        width: 100% !important;
+        right: -10px !important;
+    }
+}
+
+.mdi{
+    cursor: pointer;
+}
+
+#card-info{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

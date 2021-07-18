@@ -1,0 +1,387 @@
+:root {
+    /* COLOR */
+    --white-color: #FFFFFF;
+    --blue-color: #1059E3;
+    --bg-color-white: #ffffff;
+    /* --bg-color-white:#242424; */
+    --bg-color-black: #000000;
+    /* SIDE-NAV AND NAV*/
+    --bg-sidenav-color: #181f47;
+    --bg-sidenav-active-color: #121836;
+    --bg-nav-color: #FFFFFF;
+    /* --bg-sidenav-color          :#353535;
+    --bg-sidenav-active-color   :#222222;
+    --bg-nav-color              :#222222; */
+    /* BORDER COLORS */
+    --button-input-border-color: #BDBDBD;
+    --button-input-hover-border-color: #7E7E7E;
+    --button-input-focus-border-color: #5360DA;
+    --button-input-error-border-color: #FE6865;
+    /* TABLE BG COLORS */
+    --table-odd-strip: #F2F2F2;
+    --table-even-strip: #FFFFFF;
+    /* GAUGE COLOR */
+    --gauge-color: #dbe6fb;
+    /* --gauge-color:#00488b; */
+    /* SCROLL TRACK COLOR */
+    --scroll-track-color: #FFFFFF;
+    --scroll-bar-color: #1059E3;
+    /* --scroll-track-color :#7E7E7E;
+    --scroll-bar-color   :#242424; */
+    /* BOX-SHADOW */
+    --box-shadow: 0px 0px 4px 0px #b1b1b1;
+    --box-shadow-red: 0px 0px 4px 0px #FE6865;
+    /* FONT COLOR */
+    --font-white-color: #FFFFFF;
+    --font-normal-color: #2d2d2d;
+    --font-error-color: #FE6865;
+    --font-link-color: #5360DA;
+    --font-dim-color: #BDBDBD;
+    --font-success-color: #1DBD0B;
+    --font-warning-color: #F89406;
+    /* --font-normal-color :#FFFFFF; */
+    /* FONT WEIGHT */
+    --font-large-weight: 700;
+    --font-medium-weight: 500;
+    --font-small-weight: 400;
+    /* FONT SIZE */
+    --font-large-size: 18px;
+    --font-medium-size: 16px;
+    --font-small-size: 13px;
+}
+
+.error-text {
+    color: var(--font-error-color);
+    font-size: var(--font-small-size);
+    font-style: italic;
+}
+
+
+/* Toaster Notification Style */
+
+.toast-center-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toast-top-center {
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-bottom-center {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-top-full-width {
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-bottom-full-width {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+.toast-top-left {
+    top: 12px;
+    left: 12px;
+}
+
+.toast-top-right {
+    top: 12px;
+    right: 12px;
+}
+
+.toast-bottom-right {
+    right: 12px;
+    bottom: 12px;
+}
+
+.toast-bottom-left {
+    bottom: 12px;
+    left: 12px;
+}
+
+
+/* toast styles */
+
+.toast-title {
+    font-weight: bold;
+}
+
+.toast-message {
+    word-wrap: break-word;
+}
+
+.toast-message a,
+.toast-message label {
+    color: var(--white-color);
+}
+
+.toast-message a:hover {
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+.toast-close-button {
+    position: relative;
+    right: -0.3em;
+    top: -0.3em;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--white-color);
+    text-shadow: 0 1px 0 var(--white-color);
+    /* opacity: 0.8; */
+}
+
+.toast-close-button:hover,
+.toast-close-button:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.4;
+    border: none !important;
+}
+
+
+/*Additional properties for button version
+   iOS requires the button element instead of an anchor tag.
+   If you want the anchor version, it requires `href="#"`.*/
+
+button.toast-close-button {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+}
+
+.toast-container {
+    pointer-events: none;
+    position: fixed;
+    z-index: 999999;
+}
+
+.toast-container * {
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.toast-container .ngx-toastr {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: var(--box-shadow);
+    color: var(--white-color);
+}
+
+.toast-container .ngx-toastr:hover {
+    box-shadow: var(--box-shadow);
+    opacity: 1;
+    cursor: pointer;
+}
+
+.toast-info {
+    background-image: url("assets/alert-info.svg");
+}
+
+.toast-error {
+    background-image: url("assets/alert-wrong.svg");
+}
+
+
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/check.svg */
+
+.toast-success {
+    background-image: url("assets/alert-success.svg");
+}
+
+
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/exclamation-triangle.svg */
+
+.toast-warning {
+    background-image: url("assets/alert-warning.svg");
+}
+
+.toast-container.toast-top-center .ngx-toastr,
+.toast-container.toast-bottom-center .ngx-toastr {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toast-container.toast-top-full-width .ngx-toastr,
+.toast-container.toast-bottom-full-width .ngx-toastr {
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ngx-toastr {
+    background-color: var(--bg-color-black);
+    pointer-events: auto;
+}
+
+.toast-container .toast-success .toast-close-button {
+    position: relative;
+    right: -0.3em;
+    top: -0.3em;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--font-success-color);
+    text-shadow: 0 1px 0 var(--white-color);
+    /* opacity: 0.8; */
+}
+
+.toast-container .toast-success {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0px 0px 4px -1px var(--font-success-color);
+    border: 1px solid var(--font-success-color);
+    color: var(--font-success-color);
+}
+
+.toast-success {
+    background-color: var(--white-color);
+}
+
+.toast-container .toast-error .toast-close-button {
+    position: relative;
+    right: -0.3em;
+    top: -0.3em;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--font-error-color);
+    text-shadow: 0 1px 0 var(--white-color);
+    /* opacity: 0.8; */
+}
+
+.toast-container .toast-error {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0px 0px 4px -1px var(--font-error-color);
+    color: var(--font-error-color);
+}
+
+.toast-error {
+    background-color: var(--white-color);
+}
+
+.toast-info {
+    background-color: var(--blue-color);
+}
+
+.toast-warning {
+    background-color: var(--font-warning-color);
+}
+
+.toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: var(--bg-color-black);
+    opacity: 0.4;
+}
+
+
+/* Responsive Design */
+
+@media all and (max-width: 240px) {
+    .toast-container .ngx-toastr.div {
+        padding: 8px 8px 8px 50px;
+        width: 11em;
+    }
+    .toast-container .toast-close-button {
+        right: -0.2em;
+        top: -0.2em;
+    }
+}
+
+@media all and (min-width: 241px) and (max-width: 480px) {
+    .toast-container .ngx-toastr.div {
+        padding: 8px 8px 8px 50px;
+        width: 18em;
+    }
+    .toast-container .toast-close-button {
+        right: -0.2em;
+        top: -0.2em;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+    .toast-container .ngx-toastr.div {
+        padding: 15px 15px 15px 50px;
+        width: 25em;
+    }
+}
+
+
+/*Toaster Notification Style End*/
+
+.modal-backdrop.show {
+    /* display: none !important; */
+    z-index: 500;
+}
+
+.modal {
+    z-index: 1000 !important;
+}
+
+.modal-dialog {
+    position: absolute;
+    margin: auto;
+    width: 100% !important;
+    height: 100%;
+    right: -15px;
+    border: none !important;
+    background: none !important;
+}
+
+.modal-content {
+    height: 100%;
+    border: none !important;
+    background: none !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: transparent !important;
+    color: #555 !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: #555555 !important;
+    margin-left: 1px;
+}

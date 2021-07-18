@@ -1,0 +1,11 @@
+.bg-theme{
+    background-color: #F0FBFF;
+}
+.header{
+    width: 100%;
+    height: 100px;
+    padding-left: 20px;
+}
+p{
+    font-family: sans-serif;
+}

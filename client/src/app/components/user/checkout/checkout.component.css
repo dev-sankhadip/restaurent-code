@@ -1,0 +1,210 @@
+.wrap {
+    padding-top: 30px;
+}
+
+input, select {
+    box-shadow: none !important;
+    border: 1.5px solid #ccc;
+    background-color: transparent !important;
+}
+
+input[type=radio] {
+    transform: scale(1.5);
+}
+
+input[type="radio"]:checked {
+    background-color: black !important;
+}
+
+.custom_form_group {
+    position: relative;
+}
+
+.custom_form_group input {
+    padding-right: 45px;
+    border: 1.5px solid #ccc;
+}
+
+.custom_form_group label {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+
+.custom_form_group label i {
+    font-size: 25px;
+    color: gray;
+}
+
+.custom_form_group label span {
+    font-size: 38px;
+    margin-top: -18px;
+    margin-left: -23px;
+    position: absolute;
+    color: gray;
+}
+
+.plus {
+    font-size: 35px;
+    position: relative;
+    top: -18px;
+    height: 0px;
+    cursor: pointer;
+}
+
+#addAddress .form-group {
+    position: relative;
+}
+
+#addAddress .form-group label {
+    position: absolute;
+    top: -15px;
+    right: 25px;
+    width: 25px;
+    height: 20px;
+    padding: 2px;
+    padding-left: 8px;
+    z-index: 1;
+    font-size: 25px;
+    background-color: white;
+}
+
+/* #addAddress .form-group label :after {
+    content: " ";
+    background-color: #fff;
+    width: 100%;
+    height: 8px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+} */
+
+/* #addAddress label {
+    background-color: white;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: .5rem;
+} */
+
+#addAddress .form-group input {
+    outline-width: none !important;
+    box-shadow: none !important;
+    padding: 20px 10px;
+    background-color: white;
+}
+
+#addAddress .form-group input:focus {
+    outline-width: none !important;
+}
+
+#addAddress ::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+#addAddress :-moz-placeholder {
+    font-style: italic;
+}
+
+#addAddress ::-moz-placeholder {
+    font-style: italic;
+}
+
+#addAddress :-ms-input-placeholder {
+    font-style: italic;
+}
+
+.text-gray {
+    color: #5e5e5e;
+}
+
+.order_item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-img-green {
+    width: 20px;
+    height: 20px;
+    border: 1px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-img-green div {
+    width: 12px;
+    height: 12px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+.item-img-red {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #D3222D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-img-red div {
+    width: 12px;
+    height: 12px;
+    background-color: #D3222D;
+    border-radius: 50%;
+}
+
+.btn-group {
+    border: 1.5px solid #ccc;
+}
+
+.btn {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-red {
+    background-color: #D3222D;
+    border-color: #D3222D;
+    color: white;
+}
+
+.number {
+    color: #FDB916;
+    background-color: white;
+}
+
+.border-gray{
+    border:1px solid #ccc;
+    outline: none !important;
+}
+.border-gray:focus{
+    border: 1px solid #5bc0de;
+}
+.form-group_2 label {
+    position: absolute;
+    top: -15px;
+    right: 25px;
+    width: 25px;
+    height: 20px;
+    padding: 2px;
+    padding-left: 8px;
+    z-index: 0;
+    font-size: 25px;
+    background-color: white;
+}
+
+.input-group input {
+    outline-width: none !important;
+    box-shadow: none !important;
+    padding: 20px 10px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.form-group_2 input:focus {
+    outline-width: none !important;
+}
