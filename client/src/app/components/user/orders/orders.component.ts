@@ -1,4 +1,3 @@
-import { FormGroup } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -121,7 +120,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
 
-  SearchOrder(event, prop) {
+  SearchOrder(prop) {
     const updatedKeys = Object.keys(this.searchValue).filter((item) => {
       if (this.searchValue[item]) {
         return true
@@ -191,9 +190,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     // console.log(filteredOrderIds);
   }
-   
-  dateReset(form: FormGroup ){
-    form.reset();
+
+  dateReset() {
+    this.searchValue.createdOn = null;
+    this.SearchOrder('createdOn');
   }
 
 }

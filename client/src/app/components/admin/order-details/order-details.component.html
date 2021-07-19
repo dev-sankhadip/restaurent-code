@@ -9,8 +9,8 @@
         <p class="font-weight-bold">Delivery Type: <span>{{ getOrderDet('Order_Type_Desc') }}</span></p>
       </div>
       <div class="col-lg-3">
-        <p class="font-weight-bold mb-2">Mobile Number: <span>{{ getOrderDet('Identification') }}</span></p>
-        <p class="font-weight-bold mb-2">Alternative Number: <span>{{ getOrderDet('Identification') }}</span></p>        
+        <p class="font-weight-bold mb-2">Mobile Number: <span>+{{ getOrderDet('Identification') }}</span></p>
+        <p class="font-weight-bold mb-2">Alternative Number: <span>{{ getOrderDet('Phone_No')!= '--' ? '+'+getOrderDet('Phone_No') : '--' }}</span></p>        
       </div>
       <div class="col-lg-3">
         <p class="font-weight-bold mb-2">Order Total: <span>${{ getOrderDet('Order_Total') }}</span></p>
