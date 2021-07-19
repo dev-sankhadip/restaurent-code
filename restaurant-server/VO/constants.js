@@ -57,7 +57,9 @@ const DBQueries = {
 
   CheckIfAddressExist: "Select * from tbl_Addr Where Delete_Flag = 'N' And Addr_Id = ?",
   CheckIfDeliveryAreaExist: "Select * from tbl_Lookup Where Delete_Flag = 'N' And Lookup_Cat = ? And Lookup_Val = ?",
-  GetAddressListOfUser: "Select (SELECT Lookup_Desc FROM tbl_Lookup WHERE Lookup_Cat = 'Delivery_Area' AND Lookup_Val = tbl_Addr.Delivery_Area) AS Delivery_Area_Desc, tbl_Addr.Full_Addr, tbl_Addr.Zip_Code, tbl_Addr.Landmark, tbl_Addr.State, tbl_Addr.Addr_Id FROM   tbl_Addr  WHERE Addr_Id IN (SELECT Addr_Id FROM tbl_Order WHERE Firebase_Id = ?) And Delete_Flag = 'N'"
+  GetAddressListOfUser: "Select (SELECT Lookup_Desc FROM tbl_Lookup WHERE Lookup_Cat = 'Delivery_Area' AND Lookup_Val = tbl_Addr.Delivery_Area) AS Delivery_Area_Desc, tbl_Addr.Full_Addr, tbl_Addr.Zip_Code, tbl_Addr.Landmark, tbl_Addr.State, tbl_Addr.Addr_Id FROM   tbl_Addr  WHERE Addr_Id IN (SELECT Addr_Id FROM tbl_Order WHERE Firebase_Id = ?) And Delete_Flag = 'N'",
+
+  GetBillingDetails: "Select * from vw_Billing_Det"
 };
 
 const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday']

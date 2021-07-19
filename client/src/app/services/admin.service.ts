@@ -65,4 +65,8 @@ export class AdminService {
   GetTodaySchedule() {
     return this.http.get('/admin/schedule');
   }
+
+  GetBillingDetails() {
+    return this.http.get('/admin/billing');
+  }
 }

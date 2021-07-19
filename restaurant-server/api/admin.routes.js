@@ -16,4 +16,7 @@ adminRouter.post('/login', adminService.Login);
 adminRouter.post('/refund-order', VerifyAdmin, adminService.RefundDeliveredOrder)
 adminRouter.get("/schedule", VerifyAdmin, adminService.GetTodaySchedule);
 
+
+adminRouter.get('/billing', VerifyAdmin, adminService.GetBillingDetails);
+
 module.exports = adminRouter;
