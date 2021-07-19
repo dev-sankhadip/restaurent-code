@@ -2,7 +2,6 @@ const adminRouter = require("express").Router();
 const { VerifyAdmin } = require("../middleware/verifyAdmin");
 const { ValidateRestuTimeSchema } = require("../schema/restu-time");
 const adminService = require("../service/admin.service");
-const express = require('express')
 
 
 adminRouter.get('/order', VerifyAdmin, adminService.GetOrderDetails);
