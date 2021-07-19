@@ -26,7 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.restuCloseSub = this.authService.restuClose.subscribe((IsClosed) => {
-      this.IsRestuClosed = <boolean>IsClosed['IsOpen'][0];
+      this.IsRestuClosed = !<boolean>IsClosed['IsOpen'][0];
+      console.log(this.IsRestuClosed);
       if (IsClosed['IsOpen'][2] > "12:00") {
         let tempHr = Number(IsClosed['IsOpen'][2].toString().split(":")[0]);
         let tempMin = Number(IsClosed['IsOpen'][2].toString().split(":")[1]);
