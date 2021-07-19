@@ -37,7 +37,7 @@
     color: #fff;
     width: 20px;
     height: 20px;
-    margin-left: 32%
+    margin-left: 20%
 }
 
 #progressbar #step3:before {
@@ -45,7 +45,7 @@
     color: #fff;
     width: 20px;
     height: 20px;
-    margin-right: 32%
+    margin-right: 50%
 }
 
 #progressbar #step4:before {
@@ -53,7 +53,7 @@
     color: rgb(151, 149, 149, 0.651);
     width: 20px;
     height: 20px;
-    margin-right: 28%;
+    margin-right: 25%;
 }
 
 #progressbar #step5:before {
@@ -103,12 +103,12 @@
 
 #progressbar li:nth-child(3):after {
     float: left;
-    width: 68%
+    width: 50%
 }
 
 #progressbar li:nth-child(4):after {
     margin-left: auto;
-    width: 132%
+    width: 150%
 }
 #progressbar li.active:before{
  background-color: #fff;
@@ -133,6 +133,12 @@
     }
     .para{
         font-size: medium;
+    }
+    .ac{
+        margin-left: 0px !important;
+    }
+    .in{
+        left: -20px !important;
     }
 }
 @media(max-width:320px){
