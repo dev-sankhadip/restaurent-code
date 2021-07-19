@@ -82,7 +82,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     if (!this.UserOrders)
       return "--"
     else {
-      let data = this.BackUserOrders[orderId][0][prop];
+      let data = this.BackUserOrders[orderId][0][prop] ?? "--";
       return type ? new Date(data).toDateString() : data;
     }
   }

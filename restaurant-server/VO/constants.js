@@ -43,7 +43,7 @@ const DBQueries = {
   GetUnacptReason: "Select Lookup_Desc from tbl_Lookup Where Lookup_Cat = ? And Lookup_Val = ? And Delete_Flag = 'N'",
 
   GetOrderStatus: "Select Order_Status, Created_On from tbl_Order Where Firebase_Id = ? and Order_Id = ? and Delete_Flag = 'N'",
-  GetAllPastOrders: "Select Order_Id, Order_Type, Order_Type_Desc, Order_Status, Order_Status_Desc, Order_Total, Delivery_Charge, Created_On, Menu_Name, Menu_Qty, Menu_Price, IsRefund, Order_Status, Pay_Method from vw_Order_Det Where Order_Status in ('U', 'D')  Order By Created_On Desc",
+  GetAllPastOrders: "Select * from vw_Order_Det Where Order_Status in ('U', 'D')  Order By Created_On Desc",
 
   GetRefreshToken: "Select Refresh_Token from tbl_Token Where Firebase_Id = ? and Delete_Flag = 'N'",
   CheckAdmin: "Select * from tbl_Admin Where username = ? and password = ? and Delete_Flag = 'N'",

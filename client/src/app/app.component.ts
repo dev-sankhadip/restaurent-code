@@ -25,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+
     this.restuCloseSub = this.authService.restuClose.subscribe((IsClosed) => {
       this.IsRestuClosed = !<boolean>IsClosed['IsOpen'][0];
       if (IsClosed['IsOpen'][2] > "12:00") {

@@ -65,7 +65,10 @@
         </div>
         <div class="d-flex justify-content-between align-items-center flex-wrap">
           <h6 class="mb-2 text-gray">STATUS</h6>
-          <h6 class="mb-2 text-gray">{{ getOrderDetails(orderId, 'Order_Status_Desc') }}</h6>
+          <h6 class="mb-2 text-gray">
+            {{ getOrderDetails(orderId, 'Order_Status_Desc') }}
+            {{ getOrderDetails(orderId, 'Order_Status') == 'U' ? ',' + getOrderDetails(orderId, 'Unacpt_Reason_Desc') : null }}
+          </h6>
         </div>
         <h6 class="text-gray">ITEMS</h6>
         <!-- order menu items -->
@@ -92,20 +95,20 @@
           <hr>
           <div class="row d-flex">
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Name: <span>--</span></p>
-              <p class="font-weight-bold">Delivery Type: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p>
+              <p class="font-weight-bold">Delivery Type: <span>{{getOrderDetails(orderId, 'Order_Type_Desc')}}</span></p>
             </div>
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Mobile Number: <span>--</span></p>
-              <p class="font-weight-bold mb-2">Alternative Number: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Mobile Number: <span>+{{getOrderDetails(orderId, 'Identification')}}</span></p>
+              <p class="font-weight-bold mb-2">Alternative Number: <span>{{getOrderDetails(orderId, 'Phone_No' )!= '--' ? '+'+getOrderDetails(orderId, 'Phone_No' ) : '--'}}</span></p>
             </div>
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Order Total: <span>--</span></p>
-              <p class="font-weight-bold">Email: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Order Total: <span>${{ getOrderDetails(orderId, 'Order_Total') }}</span></p>
+              <p class="font-weight-bold">Email: <span>{{getOrderDetails(orderId, 'Email')}}</span></p>
             </div>
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Address: <span>--</span></p>
-              <p class="font-weight-bold">Delivery Area: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Address: <span>{{getOrderDetails(orderId, 'Full_Addr')}}</span></p>
+              <p class="font-weight-bold">Delivery Area: <span>{{getOrderDetails(orderId, 'Delivery_Area_Desc')}}</span></p>
             </div>
           </div>
 
