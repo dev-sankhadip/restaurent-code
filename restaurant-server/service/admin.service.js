@@ -345,6 +345,20 @@ const GetTodaySchedule = async (request, response) => {
 }
 
 
+const GetBillingDetails = async (request, response) => {
+    try {
+        const [rows] = await poolConnection.execute(DBQueries.GetBillingDetails);
+        if (rows.length > 0) {
+            return response.status(200).send(rows);
+        }
+        return response.status(204).send();
+    } catch (error) {
+        logger.error(error);
+        response.status(500).send({ msg: error });
+    }
+}
+
+
 module.exports = {
     AddMenu,
     GetOrderDetails,
@@ -357,5 +371,6 @@ module.exports = {
     Login,
     RefundDeliveredOrder,
     MonitorRefundWebhook,
-    GetTodaySchedule
+    GetTodaySchedule,
+    GetBillingDetails
 }

@@ -2,7 +2,6 @@ const adminRouter = require("express").Router();
 const { VerifyAdmin } = require("../middleware/verifyAdmin");
 const { ValidateRestuTimeSchema } = require("../schema/restu-time");
 const adminService = require("../service/admin.service");
-const express = require('express')
 
 
 adminRouter.get('/order', VerifyAdmin, adminService.GetOrderDetails);
@@ -16,5 +15,8 @@ adminRouter.get("/past-order", VerifyAdmin, adminService.GetAllPastOrders);
 adminRouter.post('/login', adminService.Login);
 adminRouter.post('/refund-order', VerifyAdmin, adminService.RefundDeliveredOrder)
 adminRouter.get("/schedule", VerifyAdmin, adminService.GetTodaySchedule);
+
+
+adminRouter.get('/billing', VerifyAdmin, adminService.GetBillingDetails);
 
 module.exports = adminRouter;

@@ -18,8 +18,8 @@ export class RestuGuard implements Resolve<any> {
         }, (err: HttpErrorResponse) => {
           if (err.status == 403) {
             this.authService.notifyRestuClosed(err.error);
+            resolve(true);
           }
-          resolve(true);
         })
     })
   }

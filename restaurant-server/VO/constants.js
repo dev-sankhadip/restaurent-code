@@ -43,7 +43,7 @@ const DBQueries = {
   GetUnacptReason: "Select Lookup_Desc from tbl_Lookup Where Lookup_Cat = ? And Lookup_Val = ? And Delete_Flag = 'N'",
 
   GetOrderStatus: "Select Order_Status, Created_On from tbl_Order Where Firebase_Id = ? and Order_Id = ? and Delete_Flag = 'N'",
-  GetAllPastOrders: "Select Order_Id, Order_Type, Order_Type_Desc, Order_Status, Order_Status_Desc, Order_Total, Delivery_Charge, Created_On, Menu_Name, Menu_Qty, Menu_Price, IsRefund, Order_Status, Pay_Method from vw_Order_Det Where Order_Status in ('U', 'D')  Order By Created_On Desc",
+  GetAllPastOrders: "Select * from vw_Order_Det Where Order_Status in ('U', 'D')  Order By Created_On Desc",
 
   GetRefreshToken: "Select Refresh_Token from tbl_Token Where Firebase_Id = ? and Delete_Flag = 'N'",
   CheckAdmin: "Select * from tbl_Admin Where username = ? and password = ? and Delete_Flag = 'N'",
@@ -57,7 +57,9 @@ const DBQueries = {
 
   CheckIfAddressExist: "Select * from tbl_Addr Where Delete_Flag = 'N' And Addr_Id = ?",
   CheckIfDeliveryAreaExist: "Select * from tbl_Lookup Where Delete_Flag = 'N' And Lookup_Cat = ? And Lookup_Val = ?",
-  GetAddressListOfUser: "Select (SELECT Lookup_Desc FROM tbl_Lookup WHERE Lookup_Cat = 'Delivery_Area' AND Lookup_Val = tbl_Addr.Delivery_Area) AS Delivery_Area_Desc, tbl_Addr.Full_Addr, tbl_Addr.Zip_Code, tbl_Addr.Landmark, tbl_Addr.State, tbl_Addr.Addr_Id FROM   tbl_Addr  WHERE Addr_Id IN (SELECT Addr_Id FROM tbl_Order WHERE Firebase_Id = ?) And Delete_Flag = 'N'"
+  GetAddressListOfUser: "Select (SELECT Lookup_Desc FROM tbl_Lookup WHERE Lookup_Cat = 'Delivery_Area' AND Lookup_Val = tbl_Addr.Delivery_Area) AS Delivery_Area_Desc, tbl_Addr.Full_Addr, tbl_Addr.Zip_Code, tbl_Addr.Landmark, tbl_Addr.State, tbl_Addr.Addr_Id FROM   tbl_Addr  WHERE Addr_Id IN (SELECT Addr_Id FROM tbl_Order WHERE Firebase_Id = ?) And Delete_Flag = 'N'",
+
+  GetBillingDetails: "Select * from vw_Billing_Det"
 };
 
 const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday']

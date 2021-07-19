@@ -10,25 +10,24 @@
           <div class="form-group search mt-2">
             <label><i class="fa fa-search"></i></label>
             <input type="text" placeholder="Search order Id" class="form-control" [(ngModel)]="searchValue.orderId"
-              (input)="SearchOrder($event, 'orderId')" style="text-transform:uppercase">
+              (input)="SearchOrder('orderId')" style="text-transform:uppercase">
           </div>
 
         </div>
         <div class="col-lg-3 col-md-6 col-12 mb-3 pr-3 pl-lg-0 pl-4 d-flex align-items-center">
           <i class="fa fa-filter mr-3" style="font-size: 23px;"></i>
-          <form #dateform class="d-flex w-100">
-          <input type="date" class="date" [(ngModel)]="searchValue.createdOn"
-            (change)="SearchOrder($event, 'createdOn')">
-           <span class="ml-2 mt-1"><img src="../../../../assets/cross-svgrepo-com.svg" width="10px" class="cursor-pointer" (click)="dateReset(dateform)"></span>
-          </form>
+          <input type="date" class="date" [(ngModel)]="searchValue.createdOn" (change)="SearchOrder('createdOn')">
+          <span class="ml-2 mt-1"><img src="../../../../assets/cross-svgrepo-com.svg" width="10px"
+              class="cursor-pointer" (click)="dateReset()"></span>
         </div>
         <div class="col-lg-3 col-md-6 col-12 mb-3 pl-4 d-flex align-items-center">
           <i class="fa fa-filter mr-3" style="font-size: 23px;"></i>
-          <select class="select-form status w-100" [(ngModel)]="searchValue.status"
-            (change)="SearchOrder($event, 'status')">
+          <select class="select-form status w-100" [(ngModel)]="searchValue.status" (change)="SearchOrder('status')">
             <ng-container *ngIf="LookupValues">
               <option value="">Status</option>
-              <option *ngFor="let c of getLookupValueByCategory('Order_Status')" value="{{c[1]}}">{{c[2]}}</option>
+              <ng-container *ngFor="let c of getLookupValueByCategory('Order_Status')">
+                <option value="{{c[1]}}" *ngIf="c[1] == 'D' || c[1] == 'U'">{{c[2]}}</option>
+              </ng-container>
             </ng-container>
           </select>
         </div>
@@ -36,7 +35,7 @@
 
           <div class="custom-control custom-switch">
             <input type="checkbox" checked class="custom-control-input" id="switch1" [(ngModel)]="searchValue.IsRefund"
-              (change)="SearchOrder($event, 'IsRefund')">
+              (change)="SearchOrder('IsRefund')">
             <label class="custom-control-label" for="switch1">Refund</label>
           </div>
 
@@ -66,7 +65,10 @@
         </div>
         <div class="d-flex justify-content-between align-items-center flex-wrap">
           <h6 class="mb-2 text-gray">STATUS</h6>
-          <h6 class="mb-2 text-gray">{{ getOrderDetails(orderId, 'Order_Status_Desc') }}</h6>
+          <h6 class="mb-2 text-gray">
+            {{ getOrderDetails(orderId, 'Order_Status_Desc') }}
+            {{ getOrderDetails(orderId, 'Order_Status') == 'U' ? ',' + getOrderDetails(orderId, 'Unacpt_Reason_Desc') : null }}
+          </h6>
         </div>
         <h6 class="text-gray">ITEMS</h6>
         <!-- order menu items -->
@@ -93,20 +95,20 @@
           <hr>
           <div class="row d-flex">
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Name: <span>--</span></p>
-              <p class="font-weight-bold">Delivery Type: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p>
+              <p class="font-weight-bold">Delivery Type: <span>{{getOrderDetails(orderId, 'Order_Type_Desc')}}</span></p>
             </div>
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Mobile Number: <span>--</span></p>
-              <p class="font-weight-bold mb-2">Alternative Number: <span>--</span></p>        
+              <p class="font-weight-bold mb-2">Mobile Number: <span>+{{getOrderDetails(orderId, 'Identification')}}</span></p>
+              <p class="font-weight-bold mb-2">Alternative Number: <span>{{getOrderDetails(orderId, 'Phone_No' )!= '--' ? '+'+getOrderDetails(orderId, 'Phone_No' ) : '--'}}</span></p>
             </div>
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Order Total: <span>--</span></p>
-              <p class="font-weight-bold">Email: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Order Total: <span>${{ getOrderDetails(orderId, 'Order_Total') }}</span></p>
+              <p class="font-weight-bold">Email: <span>{{getOrderDetails(orderId, 'Email')}}</span></p>
             </div>
             <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Address: <span>--</span></p>
-              <p class="font-weight-bold">Delivery Area: <span>--</span></p>
+              <p class="font-weight-bold mb-2">Address: <span>{{getOrderDetails(orderId, 'Full_Addr')}}</span></p>
+              <p class="font-weight-bold">Delivery Area: <span>{{getOrderDetails(orderId, 'Delivery_Area_Desc')}}</span></p>
             </div>
           </div>
 

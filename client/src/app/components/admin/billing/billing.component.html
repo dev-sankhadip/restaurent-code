@@ -8,18 +8,31 @@
         <div class="row d-flex flex-md-nowrap pr-4 float-right justify-content-center">
           <div class="col-4 d-flex flex-nowrap align-items-center mx-3 mb-3">
             <i class="fa fa-filter mr-2" style="font-size: 23px;"></i>
-            <select class="select-form">
-              <option>Month</option>
+            <select class="select-form" (change)="FilterValues()" [(ngModel)]="searchValue.month">
+              <option value="-1">Month</option>
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
             </select>
           </div>
           <div class="col-4 d-flex flex-nowrap align-items-center mx-3 mb-3">
             <i class="fa fa-filter mr-2" style="font-size: 23px;"></i>
-            <select class="select-form">
-              <option>Year</option>
+            <select class="select-form" (change)="FilterValues()" [(ngModel)]="searchValue.year">
+              <option value="-1">Year</option>
+              <option *ngFor="let year of yearList" value="{{ year }}">{{ year }}</option>
             </select>
           </div>
           <div class="col-4 mb-3">
-            <button class="btn-theme btn">Export</button>
+            <button class="btn-theme btn" (click)="ExportBilling()">Export</button>
           </div>
         </div>
       </div>
@@ -27,52 +40,52 @@
   </div>
   <div class="container-fluid">
     <div class="table-responsive-md">
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th>SNO.</th>
-          <th>ORDER ID</th>
-          <th>DATE</th>
-          <th>ORDER AMT.</th>
-          <th>TYPE</th>
-          <th>AREA</th>
-          <th>ADDRESS</th>
-          <th>CONTACT</th>
-          <th>TOTAL AMT</th>
-        </tr>
-      </thead>
-      <tbody style="height: 53vh;">
-        <tr>
-          <td>1</td>
-          <td>#54567</td>
-          <td>04 Jun'21</td>
-          <td>$80</td>
-          <td>Delivery</td>
-          <td>SH</td>
-          <td>67 sometown, 6722</td>
-          <td>786282663</td>
-          <td>$100</td>
-        </tr>
-        
-
-
-      </tbody>
-      <tfoot class="bg-light">
+      <table class="table table-bordered">
+        <thead class="thead-light">
           <tr>
-              <td>100</td>
-              <td></td>
-              <td></td>
-              <td>$5000</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>$7500</td>
+            <th>SNO.</th>
+            <th>ORDER ID</th>
+            <th>DATE</th>
+            <th>ORDER AMT.</th>
+            <th>TYPE</th>
+            <th>AREA</th>
+            <th>ADDRESS</th>
+            <th>CONTACT</th>
+            <th>TOTAL AMT</th>
+          </tr>
+        </thead>
+        <tbody style="height: 53vh;">
+          <tr *ngFor="let det of billingDetails;index as i;">
+            <td>{{ i }}</td>
+            <td>#{{ det.Order_Id }}</td>
+            <td>{{ formatDate(det.Created_On) }}</td>
+            <td>${{ det.Order_Total }}</td>
+            <td>{{ det.Order_Type_Desc }}</td>
+            <td>{{ det.Delivery_Area_Desc }}</td>
+            <td>{{ det.Order_Type == 'D' ? det.Address : '' }}</td>
+            <td>+{{ det.Identification }}</td>
+            <td>{{ det.Total_Amount }}</td>
           </tr>
 
-      </tfoot>
 
-    </table>
+
+        </tbody>
+        <tfoot class="bg-light">
+          <tr>
+            <td>100</td>
+            <td></td>
+            <td></td>
+            <td>$5000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$7500</td>
+          </tr>
+
+        </tfoot>
+
+      </table>
     </div>
   </div>
 

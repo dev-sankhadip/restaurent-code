@@ -12,7 +12,7 @@ export class AuthService {
 
   private initialValue = {
     IsOpen:
-      [false, "00:00", "00:00"]
+      [true, "00:00", "00:00"]
   }
 
   public restuClose = new BehaviorSubject(this.initialValue);

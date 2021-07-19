@@ -36,7 +36,7 @@
         <a class="nav-link">Contact us</a>
       </li>
       <li class="nav-item" (click)="collapse()">
-        <a class="nav-link login-active-text" (click)="toggleLogin()" *ngIf="!IsLoggedIn">Login</a>
+        <a class="nav-link login-active-text" (click)="toggleLogin()" *ngIf="IsLoggedIn==false">Login</a>
       </li>
     </ul>
   </div>
