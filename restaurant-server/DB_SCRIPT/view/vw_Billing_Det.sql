@@ -18,6 +18,7 @@ CONCAT(tbl_Addr.Full_Addr, ', ', tbl_Addr.Landmark, ', ', tbl_Addr.Zip_Code) as 
 FROM tbl_Order
 INNER JOIN tbl_User
 ON tbl_Order.Firebase_Id = tbl_User.Firebase_Id
+AND tbl_Order.Order_Status = 'D'
 INNER JOIN tbl_Order_Pay
 ON tbl_Order.Order_Id = tbl_Order_Pay.Order_Id
 AND tbl_Order_Pay.Pay_Type = 'charge'
