@@ -47,8 +47,8 @@ export class MenuService {
     return this.http.post('/lookup', { lookup_cat });
   }
 
-  getDeliveryChargeList(): Observable<any> {
-    return this.http.get('/lookup/config');
+  getDeliveryChargeList(type: string): Observable<any> {
+    return this.http.get('/lookup/config', { params: new HttpParams().append("type", type) });
   }
 
   GetUserOrder(): Observable<any> {

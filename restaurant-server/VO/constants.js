@@ -16,6 +16,7 @@ const DBQueries = {
   CheckUserExistByNumber: "Select * from tbl_User Where Identification = ? and Delete_Flag = 'N'",
   GetLookupValues: "Select * from tbl_Lookup Where Delete_Flag = 'N'",
   GetDeliveryChargeList: "Select SUBSTRING(Config_Key,17) as Config_Key, Config_Value from tbl_Config Where Config_Key like '%delivery_charge%' and Delete_Flag = 'N'",
+  GetMinOrderAmount: "Select SUBSTRING(Config_Key,15) as Config_Key, Config_Value from tbl_Config Where Config_Key like '%min_order_amt%' and Delete_Flag = 'N'",
   GetDeliveryCharge: "Select Config_Value from tbl_Config Where Config_Key = ? and Delete_Flag = 'N'",
 
   CreateMasterOrder: "Insert Into tbl_Order Values(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,NULL,'N')",
@@ -57,7 +58,7 @@ const DBQueries = {
 
   CheckIfAddressExist: "Select * from tbl_Addr Where Delete_Flag = 'N' And Addr_Id = ?",
   CheckIfDeliveryAreaExist: "Select * from tbl_Lookup Where Delete_Flag = 'N' And Lookup_Cat = ? And Lookup_Val = ?",
-  GetAddressListOfUser: "Select (SELECT Lookup_Desc FROM tbl_Lookup WHERE Lookup_Cat = 'Delivery_Area' AND Lookup_Val = tbl_Addr.Delivery_Area) AS Delivery_Area_Desc, tbl_Addr.Full_Addr, tbl_Addr.Zip_Code, tbl_Addr.Landmark, tbl_Addr.State, tbl_Addr.Addr_Id FROM   tbl_Addr  WHERE Addr_Id IN (SELECT Addr_Id FROM tbl_Order WHERE Firebase_Id = ?) And Delete_Flag = 'N'",
+  GetAddressListOfUser: "Select (SELECT Lookup_Desc FROM tbl_Lookup WHERE Lookup_Cat = 'Delivery_Area' AND Lookup_Val = tbl_Addr.Delivery_Area) AS Delivery_Area_Desc, tbl_Addr.Full_Addr, tbl_Addr.Zip_Code, tbl_Addr.Landmark, tbl_Addr.State, tbl_Addr.Addr_Id, tbl_Addr.Delivery_Area FROM   tbl_Addr  WHERE Addr_Id IN (SELECT Addr_Id FROM tbl_Order WHERE Firebase_Id = ?) And Delete_Flag = 'N'",
 
   GetBillingDetails: "Select * from vw_Billing_Det"
 };

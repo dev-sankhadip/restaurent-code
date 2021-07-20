@@ -198,7 +198,7 @@ const GetAddressListOfUser = async (request, response) => {
       response.status(200).send(rows);
       return;
     }
-    response.status(204).send(rows);
+    response.status(204).send();
   } catch (error) {
     logger.error(error);
     response.status(500).send({ error });

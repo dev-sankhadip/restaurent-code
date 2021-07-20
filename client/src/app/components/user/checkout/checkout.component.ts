@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   public IsCartItem: boolean = true;
   public oldAddressShow: boolean = true;
   public savedAddressList = null
+  public minOrderAmountList = null;
 
   constructor(private router: Router, private authService: AuthService, private menuService: MenuService, private formService: FormService, private toast: ToastrService,) { }
 
@@ -51,17 +52,35 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.subscriveToValuChanges();
     this.getLookupValues();
     this.getCartItems();
-    this.getDeliveryChargeList();
+    this.getLookupConfig('charge');
+    this.getLookupConfig('order');
     this.GetAddressListOfUser();
+  }
+
+  GetMinimumOrderAmount() {
+
   }
 
   GetAddressListOfUser() {
     this.menuService.GetAddressListOfUser()
       .subscribe((res) => {
         this.savedAddressList = res;
+        if (!res) {
+          this.oldAddressShow = false;
+        }
+        this.SetSavedAddress();
       }, (err) => {
 
       })
+  }
+
+  SetSavedAddress() {
+    if (this.savedAddressList) {
+      this.CheckOutForm.patchValue({
+        addrId: this.savedAddressList[0].Addr_Id,
+        deliveryArea: this.savedAddressList[0].Delivery_Area,
+      })
+    }
   }
 
   getUserDetails(prop: string) {
@@ -83,11 +102,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       })
   }
 
-  getDeliveryChargeList() {
-    this.menuService.getDeliveryChargeList()
+  getLookupConfig(type: string) {
+    this.menuService.getDeliveryChargeList(type)
       .subscribe((res) => {
-        this.DeliveryChargeList = res;
-        this.calculateDeliveryCharge();
+        if (type == 'charge') {
+          this.DeliveryChargeList = res;
+          this.calculateDeliveryCharge();
+        }
+        if (type == 'order') {
+          this.minOrderAmountList = res;
+        }
       }, (err) => {
         console.log(err);
       })
@@ -104,13 +128,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   changeAddressType() {
     this.oldAddressShow = !this.oldAddressShow;
     if (!this.oldAddressShow)
-      this.CheckOutForm.patchValue({ addrId: null })
+      this.CheckOutForm.patchValue({ addrId: null, deliveryArea: 'SH' })
+    else
+      this.SetSavedAddress();
   }
 
   placeOrder() {
     let errorMessage = [];
+    let minOrderAmountForAPlace;
     const secNumberElem = document.getElementById("sec-number") as HTMLInputElement;
-    const { orderType, fullAddr, zipCode, landmark, paymentMethod, addrId } = this.CheckOutForm.value;
+    const { orderType, fullAddr, zipCode, landmark, paymentMethod, addrId, deliveryArea } = this.CheckOutForm.value;
     if (orderType == 'D') {
       if (!this.oldAddressShow) {
         if (!fullAddr) {
@@ -122,10 +149,20 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         if (!landmark) {
           errorMessage.push("Please enter Landmark")
         }
+        minOrderAmountForAPlace = this.CheckForMinimumOrderAmountCheck(deliveryArea);
+        if (Number(this.grandTotal) < Number(minOrderAmountForAPlace[0].Config_Value)) {
+          errorMessage.push(`Minimum Order Amount is $${minOrderAmountForAPlace[0].Config_Value}`)
+        }
       }
       if (this.oldAddressShow) {
         if (!addrId) {
           errorMessage.push("Please Select Address")
+        }
+        else {
+          minOrderAmountForAPlace = this.CheckForMinimumOrderAmountCheck(addrId);
+          if (Number(this.grandTotal) < Number(minOrderAmountForAPlace[0].Config_Value)) {
+            errorMessage.push(`Minimum Order Amount is $${minOrderAmountForAPlace[0].Config_Value}`)
+          }
         }
       }
     }
@@ -151,6 +188,26 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         $("#bankPaymentModal").modal("show");
       }
     }
+  }
+
+  CheckForMinimumOrderAmountCheck(value) {
+    let deliveryArea = value;
+    if (this.oldAddressShow) {
+      deliveryArea = (document.getElementById(value) as HTMLInputElement).value;
+    }
+    let minOrderAmountForAPlace = this.minOrderAmountList.filter(({ Config_Key, Config_Value }) => {
+      if (Config_Key == deliveryArea)
+        return true
+      return false;
+    })
+    return minOrderAmountForAPlace;
+  }
+
+  UpdateDeliveryChargeOfSavedAddr(addrId) {
+    let deliveryArea = (document.getElementById(addrId) as HTMLInputElement).value;
+    this.CheckOutForm.patchValue({
+      deliveryArea
+    })
   }
 
   getCartItems() {

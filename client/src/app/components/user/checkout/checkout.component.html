@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group row" *ngIf="CheckOutForm.controls.orderType.value == 'D'">
+      <div class="form-group row" *ngIf="CheckOutForm.controls.orderType.value == 'D' && !oldAddressShow">
         <label for="deliveryArea" class="col-sm-3 col-form-label">Delivery Area</label>
         <div class="col-sm-9 pl-md-0 pl-3">
           <select class="form-control custom-dropdown" id="deliveryArea" formControlName="deliveryArea">
@@ -83,7 +83,8 @@
                     <label>
                       <div class="form-check">
                         <input class="form-check-input" type="radio" id="{{ i }}" formControlName="addrId"
-                          value="{{ address.Addr_Id }}">
+                          value="{{ address.Addr_Id }}" (change)="UpdateDeliveryChargeOfSavedAddr(address.Addr_Id)">
+                        <input type="text" value="{{ address.Delivery_Area }}" id="{{ address.Addr_Id }}" hidden>
                         <label class="form-check-label" for="{{ i }}">
                           Address {{ i+1 }}
                         </label>

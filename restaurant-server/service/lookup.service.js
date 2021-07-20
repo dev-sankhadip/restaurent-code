@@ -33,7 +33,9 @@ const GetLookupValues = async (request, response) => {
 
 const GetDeliveryCharges = async (request, response) => {
     try {
-        const [rows] = await poolConnection.execute(DBQueries.GetDeliveryChargeList);
+        const { type } = request.query;
+        let query = type == 'charge' ? DBQueries.GetDeliveryChargeList : DBQueries.GetMinOrderAmount;
+        const [rows] = await poolConnection.execute(query);
         if (rows.length > 0) {
             response.status(200).send(rows);
             return;
