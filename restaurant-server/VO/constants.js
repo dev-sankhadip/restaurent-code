@@ -67,8 +67,11 @@ const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday
 
 const PaymentIntentWebhook = ['payment_intent.processing', 'payment_intent.succeeded', 'payment_intent.payment_failed'];
 
+const ChargeWebhook = ['charge.pending', 'charge.succeeded', 'charge.failed'];
+
 module.exports = {
   DBQueries,
   dayList,
-  PaymentIntentWebhook
+  PaymentIntentWebhook,
+  ChargeWebhook
 }

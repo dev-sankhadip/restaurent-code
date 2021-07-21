@@ -258,7 +258,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.DeliveryChargeList.map((item) => {
         if (item.Config_Key == this.CheckOutForm.controls.deliveryArea.value) {
           this.deliveryCharge = item.Config_Value
-          this.grandTotal = (parseFloat(this.deliveryCharge.toString()) + parseFloat(parseFloat(this.subTotal).toFixed(2))).toFixed(2);
+          this.grandTotal = (parseFloat(this.deliveryCharge.toString()) + parseFloat(this.subTotal)).toFixed(2);
         }
       })
     }

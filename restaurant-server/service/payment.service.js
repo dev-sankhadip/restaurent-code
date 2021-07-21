@@ -1,6 +1,6 @@
 const { poolConnection, InsertOrUpdateUsingTransaction } = require("../lib/DBConnection");
 const logger = require("../lib/logger");
-const { DBQueries, PaymentIntentWebhook } = require('../VO/constants');
+const { DBQueries, PaymentIntentWebhook, ChargeWebhook } = require('../VO/constants');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const crypto = require("crypto");
 const { GetMaxOrderId } = require("../lib/CommonFunctions");
@@ -12,7 +12,7 @@ const generateRandomString = (len) => {
 
 const CheckOutCart = async (request, response) => {
     const { user_id } = request.decodedClaims;
-    const { token: stripeToken, orderType, name, email, paymentMethod, addrId } = request.body;
+    const { token: stripeToken, orderType, username, email, paymentMethod, addrId } = request.body;
     let { deliveryArea } = request.body;
     try {
         let err_msg = [];
@@ -40,21 +40,34 @@ const CheckOutCart = async (request, response) => {
             }
             else {
                 const totalAmount = (parseFloat(subTotal_rows[0].subTotal) + parseFloat(delivery_charge));
-                const totalAmountToBePaid = parseInt((totalAmount * 100));
+                // const totalAmountToBePaidTemp = parseInt((totalAmount * 100));
+                const totalAmountToBePaid = parseInt((totalAmount * 100).toPrecision(parseInt(totalAmount).toString().length + 2))
+                // if (paymentMethod == 'C') {
+                //     const payment = await ProcessPayment(totalAmountToBePaid, stripeToken);
+                //     if (payment.status != 'failed')
+                //         const orderId = await ProcessOrderDetails(user_id, payment, totalAmount, delivery_charge, request, paymentMethod, addrId);
+                //     let resMsg;
+                //     if (payment.status == 'succeeded') {
+                //         resMsg = "Order has been placed";
+                //     }
+                //     if (payment.status == 'failed') {
+                //         resMsg = "Order Not Placed. Payment Failed";
+                //     }
+                //     if (payment.status == 'pending') {
+                //         resMsg = "Payment Pending. Order Status will be updated";
+                //     }
+                //     response.status(200).send({ msg: resMsg, orderId });
+                //     return;
+                // }
+
                 if (paymentMethod == 'C') {
-                    const payment = await ProcessPayment(totalAmountToBePaid, stripeToken);
-                    const orderId = await ProcessOrderDetails(user_id, payment, totalAmount, delivery_charge, request, paymentMethod, addrId);
-                    let resMsg;
-                    if (payment.status == 'succeeded') {
-                        resMsg = "Order has been placed";
-                    }
-                    if (payment.status == 'failed') {
-                        resMsg = "Order Not Placed. Payment Failed";
-                    }
-                    if (payment.status == 'pending') {
-                        resMsg = "Payment Pending. Order Status will be updated";
-                    }
-                    response.status(200).send({ msg: resMsg, orderId });
+                    const paymentIntent = await CreatePaymentIntent(totalAmountToBePaid, username, email)
+                    const orderId = await ProcessOrderDetails(user_id, paymentIntent, totalAmount, delivery_charge, request, paymentMethod, addrId);
+                    response.send({
+                        clientSecret: paymentIntent.client_secret,
+                        orderId,
+                        pi: paymentIntent.id
+                    });
                     return;
                 }
             }
@@ -142,8 +155,8 @@ const CreatePaymentIntent = (amount, name, email) => {
                 amount,
                 currency,
                 customer: customer.id,
-                setup_future_usage: "off_session",
-                payment_method_types: ["au_becs_debit"]
+                // setup_future_usage: "off_session",
+                // payment_method_types: ["au_becs_debit"]
             });
 
             resolve(paymentIntent);
@@ -152,6 +165,8 @@ const CreatePaymentIntent = (amount, name, email) => {
         }
     })
 }
+
+
 
 
 const MonitorPaymentIntentWebhook = async (request, response) => {
@@ -209,7 +224,6 @@ const MonitorPaymentIntentWebhook = async (request, response) => {
 
 
 const CheckIfPaymentSucceedOfFailed = async (request, response) => {
-    const { user_id } = request.decodedClaims;
     const { pi, orderId } = request.body;
     try {
         const [rows] = await poolConnection.execute(DBQueries.CheckIfPISucedOrFailed, [pi, orderId]);

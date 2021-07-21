@@ -61,7 +61,7 @@ const CheckOutSchema = joi.object({
         .messages({
             "any.only": "Payment Method must be Card"
         }),
-    token: joi.alternatives().conditional('paymentMethod', { is: 'C', then: joi.string().required(), otherwise: joi.string().allow('', null) }),
+    // token: joi.alternatives().conditional('paymentMethod', { is: 'C', then: joi.string().required(), otherwise: joi.string().allow('', null) }),
     name: joi.string().allow('', null).label("Acount Holder Name"),
     email: joi.string().email().allow('', null).label("Email"),
     addrId: joi.string().allow(null).required().label("Selected Address"),
