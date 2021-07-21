@@ -1,7 +1,9 @@
 .wraper{
     margin-top: 100px;
 }
-
+p{
+    font-family: sans-serif;
+}
 .bg-theme{
     background-color: #F0FBFF;
 }

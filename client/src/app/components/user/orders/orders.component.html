@@ -93,24 +93,35 @@
         <!-- Only admin show this section -->
         <div class="admin-panel-past-order" *ngIf="IsAdmin">
           <hr>
-          <div class="row d-flex">
-            <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p>
-              <p class="font-weight-bold">Delivery Type: <span>{{getOrderDetails(orderId, 'Order_Type_Desc')}}</span></p>
-            </div>
-            <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Mobile Number: <span>+{{getOrderDetails(orderId, 'Identification')}}</span></p>
-              <p class="font-weight-bold mb-2">Alternative Number: <span>{{getOrderDetails(orderId, 'Phone_No' )!= '--' ? '+'+getOrderDetails(orderId, 'Phone_No' ) : '--'}}</span></p>
-            </div>
-            <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Order Total: <span>${{ getOrderDetails(orderId, 'Order_Total') }}</span></p>
-              <p class="font-weight-bold">Email: <span>{{getOrderDetails(orderId, 'Email')}}</span></p>
-            </div>
-            <div class="col-lg-3">
-              <p class="font-weight-bold mb-2">Address: <span>{{getOrderDetails(orderId, 'Full_Addr')}}</span></p>
-              <p class="font-weight-bold">Delivery Area: <span>{{getOrderDetails(orderId, 'Delivery_Area_Desc')}}</span></p>
-            </div>
+          <div class="d-flex flex-lg-row flex-column">
+            <p class="mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p>
+            <p class="mb-2 ml-lg-5">Address: <span>{{getOrderDetails(orderId, 'Full_Addr')}}</span></p>
           </div>
+          <div class="d-flex flex-lg-row flex-column">
+            <p class="mb-2">Delivery Type: <span>{{getOrderDetails(orderId, 'Order_Type_Desc')}}</span></p>
+            <p class="ml-lg-5 mb-2">Mobile Number: <span>+{{getOrderDetails(orderId, 'Identification')}}, </span><span>{{getOrderDetails(orderId, 'Phone_No' )!= '--' ? '+'+getOrderDetails(orderId, 'Phone_No' ) : '--'}}</span></p>
+            <p class="ml-lg-5 mb-2">Email: <span>{{getOrderDetails(orderId, 'Email')}}</span></p>
+            <p class="ml-lg-5 mb-2">Delivery Area: <span>{{getOrderDetails(orderId, 'Delivery_Area_Desc')}}</span></p>
+          </div>
+
+          <!-- <div class="row d-flex">
+            <div class="col-lg-2">
+              <p class="mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p>
+              <p class="">Delivery Type: <span>{{getOrderDetails(orderId, 'Order_Type_Desc')}}</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="mb-2">Mobile Number: <span>+{{getOrderDetails(orderId, 'Identification')}}</span></p>
+              <p class="mb-2">Alternative Number: <span>{{getOrderDetails(orderId, 'Phone_No' )!= '--' ? '+'+getOrderDetails(orderId, 'Phone_No' ) : '--'}}</span></p>
+            </div>
+            <div class="col-lg-3">
+              <p class="mb-2">Order Total: <span>${{ getOrderDetails(orderId, 'Order_Total') }}</span></p>
+              <p class="">Email: <span>{{getOrderDetails(orderId, 'Email')}}</span></p>
+            </div>
+            <div class="col-lg-4">
+              <p class="mb-2 ">Address: <span>{{getOrderDetails(orderId, 'Full_Addr')}}</span></p>
+              <p class="">Delivery Area: <span>{{getOrderDetails(orderId, 'Delivery_Area_Desc')}}</span></p>
+            </div>
+          </div> -->
 
         </div>
 
