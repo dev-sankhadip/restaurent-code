@@ -54,7 +54,7 @@
             <th>TOTAL AMT</th>
           </tr>
         </thead>
-        <tbody style="height: 53vh;">
+        <tbody style="max-height: 53vh;">
           <tr *ngFor="let det of billingDetails;index as i;">
             <td>{{ i }}</td>
             <td>#{{ det.Order_Id }}</td>
@@ -66,7 +66,39 @@
             <td>+{{ det.Identification }}</td>
             <td>{{ det.Total_Amount }}</td>
           </tr>
-
+          <tr>
+            <td>100</td>
+            <td></td>
+            <td></td>
+            <td>$5000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$7500</td>
+          </tr>
+          <tr>
+            <td>100</td>
+            <td></td>
+            <td></td>
+            <td>$5000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$7500</td>
+          </tr>
+          <tr>
+            <td>100</td>
+            <td></td>
+            <td></td>
+            <td>$5000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$7500</td>
+          </tr>
 
 
         </tbody>
