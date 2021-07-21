@@ -23,6 +23,8 @@ export class PaymentChargeComponent implements OnInit, OnDestroy, AfterViewInit 
   public orderDetails: any;
   public PI: string;
   public orderId: string;
+  public name: string;
+  public email: string;
   public loaderMsg = "Payment processing. Please Don't Leave page";
 
   private card: any;
@@ -99,17 +101,20 @@ export class PaymentChargeComponent implements OnInit, OnDestroy, AfterViewInit 
     this.createPaymentIntent().then((intent: any) => {
       this.orderId = intent.orderId;
       this.PI = intent.pi;
+      this.name = intent.Name;
+      this.email = intent.Email;
       this.pay(intent.clientSecret);
     })
+      .catch(() => {
+        this.toast.error("Payment Failed. Please try Again", "Error", { timeOut: 2000 });
+      })
   }
 
 
   createPaymentIntent() {
     return new Promise((resolve, reject) => {
-      const { username: name } = this.orderDetails;
-      let email = "sankhdip.2000@gmail.com";
 
-      this.menuService.CreatePaymentIntent(name, email, this.orderDetails)
+      this.menuService.CreatePaymentIntent(this.orderDetails)
         .subscribe((res) => {
           resolve(res);
         })
@@ -117,8 +122,8 @@ export class PaymentChargeComponent implements OnInit, OnDestroy, AfterViewInit 
   };
 
   pay(clientSecret) {
-    const { username: name } = this.orderDetails;
-    let email = "sankhdip.2000@gmail.com";
+    const email = this.email;
+    const name = this.name;
     let cardElement = elements.getElement('card');
 
     stripe
@@ -225,8 +230,6 @@ export class PaymentChargeComponent implements OnInit, OnDestroy, AfterViewInit 
 
   setOrderDetails(orderDetails) {
     this.orderDetails = orderDetails;
-    if (!this.card)
-      this.initiateCardElement();
   }
 
 }

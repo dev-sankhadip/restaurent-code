@@ -157,7 +157,7 @@ const UpdateOrderStatus = (orderId, orderStatus, firebaseId, Pay_Method = null, 
 
             await InsertOrUpdateUsingTransaction(queryList, paramsList);
             if (orderStatus == 'U' || orderStatus == 'D')
-                await sendUpdateToUser(orderStatus, firebaseId, orderId, unacptReason);
+                await sendUpdateToUser(orderStatus, firebaseId, orderId, refund, unacptReason);
             resolve();
         } catch (error) {
             reject(error);
@@ -178,7 +178,7 @@ const RefundPayment = (paymentId, paymentMethod) => {
 }
 
 
-const sendUpdateToUser = (orderStatus, Firebase_Id, orderId, unacptReason = null) => {
+const sendUpdateToUser = (orderStatus, Firebase_Id, orderId, refund = null, unacptReason = null) => {
     return new Promise(async (resolve, reject) => {
         try {
             const [userRows] = await poolConnection.execute(DBQueries.GetUserPhoneNumber, [Firebase_Id])
@@ -190,7 +190,7 @@ const sendUpdateToUser = (orderStatus, Firebase_Id, orderId, unacptReason = null
                 sub = "Order Rejected"
                 const [unacptReason_rows] = await poolConnection.execute(DBQueries.GetUnacptReason, ['Unacpt_Reason', unacptReason]);
 
-                msg = `${unacptReason_rows[0].Lookup_Desc}. Your Order has been rejected. Order Id is ${orderId}`
+                msg = `${unacptReason_rows[0].Lookup_Desc}. Your Order has been rejected. Order Id is ${orderId}. $${refund.amount / 100} will be refunded`
             }
             if (orderStatus == 'D') {
                 sub = "Order Delivered"

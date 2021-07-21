@@ -59,8 +59,8 @@ export class MenuService {
     return this.http.get('/menu/orderstatus', { params: new HttpParams().append('order_id', orderId) });
   }
 
-  CreatePaymentIntent(name: string, email: string, orderDetails, state: string = "Western Australia") {
-    return this.http.post('/menu/check-out', { name, email, ...orderDetails, state })
+  CreatePaymentIntent(orderDetails, state: string = "Western Australia") {
+    return this.http.post('/menu/check-out', { ...orderDetails, state })
   }
 
   GetPaymentStatus = (pi: string, orderId: string) => {

@@ -12,7 +12,7 @@ const generateRandomString = (len) => {
 
 const CheckOutCart = async (request, response) => {
     const { user_id } = request.decodedClaims;
-    const { token: stripeToken, orderType, username, email, paymentMethod, addrId } = request.body;
+    const { token: stripeToken, orderType, paymentMethod, addrId } = request.body;
     let { deliveryArea } = request.body;
     try {
         let err_msg = [];
@@ -61,12 +61,16 @@ const CheckOutCart = async (request, response) => {
                 // }
 
                 if (paymentMethod == 'C') {
-                    const paymentIntent = await CreatePaymentIntent(totalAmountToBePaid, username, email)
+                    const [UserDetails_Rows] = await poolConnection.execute(DBQueries.GetUserDetails, [user_id]);
+                    const { Name, Email } = UserDetails_Rows[0];
+                    const paymentIntent = await CreatePaymentIntent(totalAmountToBePaid, Name, Email)
                     const orderId = await ProcessOrderDetails(user_id, paymentIntent, totalAmount, delivery_charge, request, paymentMethod, addrId);
                     response.send({
                         clientSecret: paymentIntent.client_secret,
                         orderId,
-                        pi: paymentIntent.id
+                        pi: paymentIntent.id,
+                        Name,
+                        Email
                     });
                     return;
                 }
