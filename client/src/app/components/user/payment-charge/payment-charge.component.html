@@ -11,7 +11,7 @@
                         <h3 data-dismiss="modal" class="float-right"><i class="mdi mdi-close"></i></h3>
                     </div>
 
-                    <form (ngSubmit)="createStripeToken()" class="checkout mt-4" autocomplete="off">
+                    <form (ngSubmit)="ProcessPayment()" class="checkout mt-4" autocomplete="off">
                         <div id="form-field">
                             <div id="card-info" #cardInfo class="py-4 px-2"></div>
                             <div class="text-center">
@@ -19,9 +19,9 @@
                                     Pay ${{totalAmount}}
                                 </button>
                             </div>
-                            <div class="alert alert-danger" role="alert" *ngIf="cardError">
+                            <!-- <div class="alert alert-danger" role="alert" *ngIf="cardError">
                                 {{ cardError }}
-                            </div>
+                            </div> -->
                         </div>
                     </form>
 
@@ -31,3 +31,8 @@
         </div>
     </div>
 </div>
+
+
+<ngx-ui-loader [loaderId]="'loader-01'" [text]="loaderMsg" fgsColor="#FDBA3D" pbColor="#FDBA3D"
+    [hasProgressBar]="false">
+</ngx-ui-loader>
