@@ -72,15 +72,17 @@
               <div id="recaptcha-container" [hidden]="IsCaptchaVerified"
                 style="transform:scale(.80);-webkit-transform:scale(.80);transform-origin:0 0;-webkit-transform-origin:0 0;">
               </div>
-              <div class="mb-4" (click)="sendLoginCode">
-                <button [disabled]="!IsCaptchaVerified" class="float-right btn btn-dark rounded"
-                  (click)="checkIfUserExist()">{{
-                  IsCodeResent ? 'RESEND OTP' : 'SEND OTP' }}</button>
-              </div>
-              <div class="text-center">
-                <button class="btn px-4 font-weight-bold ml-md-5 ml-4 border submit-btn" style="border-radius: 18px;"
-                  [disabled]="userForm.invalid || !windowRef.confirmationResult" id="sign-in-button"
-                  (click)="verifyLoginCode()">SUBMIT</button>
+              <div class="d-flex justify-content-center pl-5 pt-4 pr-0">
+                <div class="text-center">
+                  <button class="btn px-4 font-weight-bold ml-md-5 ml-4 border submit-btn" style="border-radius: 18px;"
+                    [disabled]="userForm.invalid || !windowRef.confirmationResult" id="sign-in-button"
+                    (click)="verifyLoginCode()">SUBMIT</button>
+                </div>
+                <div class="mb-4 text-right" (click)="sendLoginCode">
+                  <button [disabled]="!IsCaptchaVerified" class="float-right ml-4 btn rounded text-nowrap"
+                    (click)="checkIfUserExist()">{{
+                    IsCodeResent ? 'RESEND OTP' : 'SEND OTP' }}</button>
+                </div>
               </div>
             </form>
           </div>

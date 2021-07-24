@@ -39,7 +39,7 @@
         <input class="form-control mr-sm-2 rounded" id="search" type="search" (keyup)="searchItem()"
           placeholder="Search menu items" aria-label="Search" style="width: 340px;">
         <button class="btn btn-outline-success my-2 my-sm-0 mx-auto rounded" type="submit"
-          (click)="searchFunction()">Search</button>
+          (click)="searchItem()">Search</button>
       </form>
     </div>
   </div>
@@ -109,33 +109,32 @@
           </div>
         </div>
       </ng-template>
-      <div class="text-center w-100" id="nomenu">
-        <div class="plate">
+      <div class="text-center w-100 mb-5" id="nomenu">
+        <span style="font-family: sans-serif; font-size: 18px;color: #ff7518;">This item is not available with us</span>
+        <!-- <div class="plate">
           <span class="inner_plate">
-            <span>No Menu</span>
+            
           </span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
-
-  <div class="pt-4 pb-5 container">
+  <div class="row">
+  <div class="text-md-right text-center col-md-7 order-md-1 order-2">
+    <a href="/menu" class="btn btn-dark btn-lg rounded px-5 mt-3 mb-4 mx-auto pt-3 pb-3 d-none">See Full Menu</a>
+    <button class="btn btn-dark btn-lg rounded px-5 mt-3 mb-4 mx-auto pt-3 pb-3" (click)="getCartItem()">Go to
+      cart</button>
+  </div>
+  <div class="pt-4 pb-5 col-md-5 order-md-2 order-1">
     <button class="btn float-right btn-warning rounded mx-2" (click)="nextItems()"
       *ngIf="next<totalMenuItems">Next</button>
     <button class="btn float-right btn-warning rounded mx-2" (click)="prevItems()" *ngIf="previous>0">Previous</button>
   </div>
 
-  <div class="text-center container pt-5">
-    <a href="/menu" class="btn btn-dark btn-lg rounded px-5 mt-3 mb-4 mx-auto pt-3 pb-3 d-none">See Full Menu</a>
-    <button class="btn btn-dark btn-lg rounded px-5 mt-3 mb-4 mx-auto pt-3 pb-3" (click)="getCartItem()">Go to
-      cart</button>
-  </div>
+</div>
 
 </div>
 
-<!-- Find us section -->
-<app-find-us></app-find-us>
-<!-- footer section-->
-<app-footer></app-footer>
+<app-our-story></app-our-story>
 
 <!-- <app-cart></app-cart> -->

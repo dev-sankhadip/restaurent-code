@@ -57,6 +57,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   collapse() {
     $('.navbar-collapse').collapse('hide');
+    $('#signupModal').modal('hide');
+    $("#cartModal").modal('hide');
   }
 
   logout() {

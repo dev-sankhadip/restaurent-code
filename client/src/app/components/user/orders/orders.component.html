@@ -93,17 +93,20 @@
         <!-- Only admin show this section -->
         <div class="admin-panel-past-order" *ngIf="IsAdmin">
           <hr>
-          <div class="d-flex flex-lg-row flex-column">
-            <p class="mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p>
+          <div class="row">
+            <div class="col-lg-2"><p class="mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p></div>
+            <div class="col-lg-10"><p class="mb-2" style="word-break: break-all;">Address: <span>{{getOrderDetails(orderId, 'Full_Addr')}}</span></p></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2"><p class="mb-2">Delivery Type: <span>{{getOrderDetails(orderId, 'Order_Type_Desc')}}</span></p></div>
+            <div class="col-lg-4"><p class="mb-2" style="word-break: break-all;">Mobile Number: <span>+{{getOrderDetails(orderId, 'Identification')}}, </span><span>{{getOrderDetails(orderId, 'Phone_No' )!= '--' ? '+'+getOrderDetails(orderId, 'Phone_No' ) : '--'}}</span></p></div>
+            <div class="col-lg-3"><p class="mb-2" style="word-break: break-all;">Email: <span>{{getOrderDetails(orderId, 'Email')}}</span></p></div>
+            <div class="col-lg-3"><p class="mb-2" style="word-break: break-all;">Delivery Area: <span>{{getOrderDetails(orderId, 'Delivery_Area_Desc')}}</span></p></div>
+          </div>
+          <!-- <div class="d-flex flex-lg-row flex-column">
+            
             <p class="mb-2 ml-lg-5">Address: <span>{{getOrderDetails(orderId, 'Full_Addr')}}</span></p>
-          </div>
-          <div class="d-flex flex-lg-row flex-column">
-            <p class="mb-2">Delivery Type: <span>{{getOrderDetails(orderId, 'Order_Type_Desc')}}</span></p>
-            <p class="ml-lg-5 mb-2">Mobile Number: <span>+{{getOrderDetails(orderId, 'Identification')}}, </span><span>{{getOrderDetails(orderId, 'Phone_No' )!= '--' ? '+'+getOrderDetails(orderId, 'Phone_No' ) : '--'}}</span></p>
-            <p class="ml-lg-5 mb-2">Email: <span>{{getOrderDetails(orderId, 'Email')}}</span></p>
-            <p class="ml-lg-5 mb-2">Delivery Area: <span>{{getOrderDetails(orderId, 'Delivery_Area_Desc')}}</span></p>
-          </div>
-
+          </div> -->
           <!-- <div class="row d-flex">
             <div class="col-lg-2">
               <p class="mb-2">Name: <span>{{getOrderDetails(orderId, 'Name')}}</span></p>
@@ -135,4 +138,12 @@
       <h4>Looks like you, haven't made<br> your order yet.</h4>
     </div>
   </ng-container>
+</div>
+
+<div *ngIf="!IsAdmin" class="mt-5 pt-5">
+  <!-- Find us section -->
+<app-find-us></app-find-us>
+<!-- footer section-->
+<app-footer></app-footer>
+
 </div>

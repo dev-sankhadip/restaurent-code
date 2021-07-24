@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -22,9 +23,15 @@ export class AppComponent implements OnInit, OnDestroy {
     $('.navbar-collapse').collapse('hide');
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    ) { }
 
   ngOnInit() {
+    if (this.router.url != '/orders') {
+      $(".mdi-account-circle").removeClass("text-light");
+    }
     this.restuCloseSub = this.authService.restuClose.subscribe((IsClosed) => {
       this.IsRestuClosed = !<boolean>IsClosed['IsOpen'][0];
       if (IsClosed['IsOpen'][2] > "12:00") {

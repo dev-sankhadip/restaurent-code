@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin.service';
 import { MenuService } from 'src/app/services/menu.service';
-
+declare var $: any;
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -43,6 +43,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       this.getLookupValues();
     }
     if (this.router.url == '/orders') {
+      $(".mdi-account-circle").addClass("text-light");
       if (this.route.snapshot.data['IsLoggedIn'])
         this.getUserOrders();
       else

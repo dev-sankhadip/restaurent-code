@@ -1,4 +1,4 @@
-<div class="container-fluid wrap">
+<div class="container-fluid wrap mb-4">
   <div class="row" [formGroup]="CheckOutForm">
     <div class="col-md-5 px-4">
       <h1 class="font-weight-bold text-secondary">Checkout</h1>
@@ -218,3 +218,8 @@
 <app-payment-charge [totalAmount]="grandTotal"></app-payment-charge>
 
 <app-bank-details [amount]="grandTotal"></app-bank-details>
+
+<!-- Find us section -->
+<app-find-us></app-find-us>
+<!-- footer section-->
+<app-footer></app-footer>

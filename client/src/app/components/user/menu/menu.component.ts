@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { ToastrService } from 'ngx-toastr'
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 declare var $: any;
@@ -20,11 +21,14 @@ export class MenuComponent implements OnInit {
   public searchBeforeItems: any = null;
   public prevSearchValue: string = "";
 
-  constructor(private _MenuService: MenuService, private toast: ToastrService, private authService: AuthService) {
+  constructor(private _MenuService: MenuService, private toast: ToastrService, private authService: AuthService,private route: ActivatedRoute,private router: Router) {
   }
 
   ngOnInit(): void {
     this.getMenuList();
+    if (this.router.url != '/orders') {
+      $(".mdi-account-circle").removeClass("text-light");
+    }
   }
 
   private getMenuList() {
