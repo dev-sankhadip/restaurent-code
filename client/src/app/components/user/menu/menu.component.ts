@@ -20,6 +20,7 @@ export class MenuComponent implements OnInit {
   public totalMenuItems: number = 0;
   public searchBeforeItems: any = null;
   public prevSearchValue: string = "";
+  public isMenu: boolean = false;
 
   constructor(private _MenuService: MenuService, private toast: ToastrService, private authService: AuthService,private route: ActivatedRoute,private router: Router) {
   }
@@ -28,6 +29,9 @@ export class MenuComponent implements OnInit {
     this.getMenuList();
     if (this.router.url != '/orders') {
       $(".mdi-account-circle").removeClass("text-light");
+    }
+    if(this.router.url == '/menu'){
+      this.isMenu = true;
     }
   }
 

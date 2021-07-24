@@ -134,7 +134,15 @@
 </div>
 
 </div>
+<div *ngIf="!isMenu">
+  <app-our-story></app-our-story>
+</div>
+<div *ngIf="isMenu">
+  <!-- Find us section -->
+  <app-find-us></app-find-us>
+  <!-- footer section-->
+  <app-footer></app-footer>
+</div>
 
-<app-our-story></app-our-story>
 
 <!-- <app-cart></app-cart> -->
